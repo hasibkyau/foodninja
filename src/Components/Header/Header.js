@@ -1,14 +1,8 @@
-import React from 'react';
-import './Header.css';
-import { NavLink } from 'react-router-dom';
-import {
-    Navbar,
-    NavbarBrand,
-    Nav,
-    NavItem,
-} from 'reactstrap';
-import Logo from '../../assets/logo.png';
-
+import React, {useState, useEffect} from 'react';
+import { Link } from 'react-router-dom';
+import { Navbar, NavbarBrand, Nav, NavItem, NavbarToggler, Collapse, } from 'reactstrap';
+import LOGO from '../../assets/Logo';
+//useEfect componentDidMount or update er moto kaj kore
 import { connect } from 'react-redux';
 
 const mapStateToProps = state => {
@@ -18,40 +12,69 @@ const mapStateToProps = state => {
 }
 
 const Header = props => {
+
+    const [NavOpen, setNavOpen] = useState(false);
+    // const [MyInfo, setMyInfo] = useState({});
+
+    const navToggle = () =>{
+        const toggle = !NavOpen;
+        setNavOpen(toggle);
+
+        // setMyInfo({
+        //     age: 24,
+        //     name: hasib,
+        // })
+    }
+
+    // useEffect(()=>{
+    //     console.log("didMount");
+    // })
+
+    // useEffect(()=>{
+    //     console.log("will work when my info is updated");
+    // },[MyInfo])
+
+
     let links = null;
     if (props.token === null) {
         links = (
-            <Nav className="mr-md-5">
+            <Nav className='mr-auto' navbar>
                 <NavItem>
-                    <NavLink exact to="/login" className="NavLink">Login</NavLink>
+                    <Link exact to="/login" className="nav-link">Login</Link>
                 </NavItem>
             </Nav>
         )
     } else {
         links = (
-            <Nav className="mr-md-5">
+            <Nav className='mr-auto' navbar>
                 <NavItem>
-                    <NavLink exact to="/" className="NavLink">Burger Builder</NavLink>
+                    <Link exact to="/home" className="nav-link">Home</Link>
                 </NavItem>
                 <NavItem>
-                    <NavLink exact to="/orders" className="NavLink">Orders</NavLink>
+                    <Link exact to="/" className="nav-link">Burger Builder</Link>
                 </NavItem>
                 <NavItem>
-                    <NavLink exact to="/logout" className="NavLink">Logout</NavLink>
+                    <Link exact to="/orders" className="nav-link">Orders</Link>
+                </NavItem>
+                <NavItem>
+                    <Link exact to="/logout" className="nav-link">Logout</Link>
                 </NavItem>
             </Nav>
         )
     }
     return (
-        <div className="Navigation">
-            <Navbar style={{
-                backgroundColor: "#D70F64",
-                height: "70px",
-            }}>
-                <NavbarBrand href="/" className="mr-auto ml-md-5 Brand">
-                    <img src={Logo} alt="Logo" width="80px" />
-                </NavbarBrand>
-                {links}
+        <div>
+            <Navbar light color="light" expand="sm">
+                <div className='container'>
+                    <NavbarToggler onClick={navToggle} />
+                    <NavbarBrand href="/">
+                        <LOGO />
+                    </NavbarBrand>
+                    <Collapse isOpen={NavOpen} navbar>
+                            {links}                       
+                    </Collapse>
+
+                </div>
             </Navbar>
         </div>
     )
