@@ -57,7 +57,7 @@ class Checkout extends Component {
             orderTime: new Date(),
             userId: this.props.userId,
         }
-        axios.post("https://burger-builder-723e2-default-rtdb.firebaseio.com/orders.json?auth=" + this.props.token, order)
+        axios.post("https://foodninja-4c3c8-default-rtdb.firebaseio.com/orders.json?auth=" + this.props.token, order)
             .then(response => {
                 if (response.status === 200) {
                     this.setState({

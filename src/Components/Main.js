@@ -5,7 +5,7 @@ import Orders from './Orders/Orders';
 import Checkout from './Orders/Checkout/Checkout';
 import Auth from './Auth/Auth';
 import Logout from './Auth/Logout';
-
+import Home from './Home/Home';
 import { Route, Switch, Redirect } from 'react-router-dom';
 
 import { connect } from 'react-redux';
@@ -43,7 +43,8 @@ class Main extends Component {
                     <Route path="/orders" component={Orders} />
                     <Route path="/checkout" component={Checkout} />
                     <Route path="/logout" component={Logout} />
-                    <Route path="/" exact component={BurgerBuilder} />
+                    <Route path="/burgerBuilder" exact component={BurgerBuilder}/>
+                    <Route path= "/" exact component={Home}/>
                     <Redirect to="/" />
                 </Switch>
             )

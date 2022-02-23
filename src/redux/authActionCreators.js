@@ -39,7 +39,7 @@ export const auth = (email, password, mode) => dispatch => {
     } else {
         authUrl = "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=";
     }
-    const API_KEY = "AIzaSyDnI5A0BZZhIpOhYU06C2Oe1OKwiO4LgiU";
+    const API_KEY = "AIzaSyDdJvlmOsgrH_t3Jr_mXFkus6RlTqA6ZDg";
     axios.post(authUrl + API_KEY, authData)
         .then(response => {
             dispatch(authLoading(false));

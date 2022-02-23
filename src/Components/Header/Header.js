@@ -48,10 +48,10 @@ const Header = props => {
         links = (
             <Nav className='mr-auto' navbar>
                 <NavItem>
-                    <Link exact to="/home" className="nav-link">Home</Link>
+                    <Link exact to="/" className="nav-link">Home</Link>
                 </NavItem>
                 <NavItem>
-                    <Link exact to="/" className="nav-link">Burger Builder</Link>
+                    <Link exact to="/burgerBuilder" className="nav-link">Burger Builder</Link>
                 </NavItem>
                 <NavItem>
                     <Link exact to="/orders" className="nav-link">Orders</Link>
