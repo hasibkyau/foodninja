@@ -11,6 +11,7 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { authCheck } from '../redux/authActionCreators';
+import ReactFirebaseFileUpload from '../firebase/ReactFirebaseFileUpload';
 
 const mapStateToProps = state => {
     return {
@@ -45,6 +46,7 @@ class Main extends Component {
                     <Route path="/logout" component={Logout} />
                     <Route path="/burgerBuilder" exact component={BurgerBuilder}/>
                     <Route path= "/" exact component={Home}/>
+                    <Route path= "/upload" exact component={ReactFirebaseFileUpload}/>
                     <Redirect to="/" />
                 </Switch>
             )

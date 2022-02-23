@@ -59,6 +59,9 @@ const Header = props => {
                 <NavItem>
                     <Link exact to="/logout" className="nav-link">Logout</Link>
                 </NavItem>
+                <NavItem>
+                    <Link exact to="/upload" className="nav-link">Upload Files</Link>
+                </NavItem>
             </Nav>
         )
     }

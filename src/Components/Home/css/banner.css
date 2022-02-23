@@ -1,0 +1,26 @@
+.banner-text {
+    /* line-height: 5vw;
+    border: 3px solid tomato; 
+    text-align: center;
+    padding: 5vmin;
+    margin-top: 5.5vw;
+    margin-bottom: 5.5vw; */
+    text-align: center;
+    
+  }
+
+  .banner{
+    /* background-image:linear-gradient(to right, rgba(2, 2, 2, 0.5), rgba(0, 0, 0, 0.5)),url('../../../../public/assets/images/bg1.jpg'); */
+    /* margin-top: 60px; */
+    background-size:cover;
+    min-height: 33vw;
+    border: 3px solid tomato; 
+         
+  }
+
+  .companyName{
+    color: tomato; 
+    font-size: 5vw;
+    font-style: italic; 
+    font-weight: bolder; 
+  }
