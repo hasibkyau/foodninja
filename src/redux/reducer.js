@@ -1,4 +1,5 @@
 import * as actionTypes from './actionTypes';
+import { combineReducers } from 'redux';
 
 const INGREDIENT_PRICES = {
     salad: 20,
@@ -21,6 +22,8 @@ const INITIAL_STATE = {
     userId: null,
     authLoading: false,
     authFailedMsg: null,
+    dishes: [],
+    comments: [],
 }
 
 export const reducer = (state = INITIAL_STATE, action) => {
@@ -101,20 +104,31 @@ export const reducer = (state = INITIAL_STATE, action) => {
                 userId: null,
                 authFailedMsg: null,
             }
-        
+
         case actionTypes.AUTH_LOADING:
-            return{
+            return {
                 ...state,
                 authLoading: action.payload
             }
-        
+
         case actionTypes.AUTH_FAILED:
-            return{
+            return {
                 ...state,
                 authFailedMsg: action.payload,
+            }
+
+
+
+
+
+        case actionTypes.LOAD_DISHES:
+            return {
+                ...state,
+                dishes: action.payload,
             }
         default:
             return state;
     }
 
 }
+

@@ -7,12 +7,11 @@ import Auth from './Auth/Auth';
 import Logout from './Auth/Logout';
 import Home from './Home/Home';
 import { Route, Switch, Redirect } from 'react-router-dom';
-
 import { connect } from 'react-redux';
-
 import { authCheck } from '../redux/authActionCreators';
 import ReactFirebaseFileUpload from '../firebase/ReactFirebaseFileUpload';
-
+//import AddMenu from './AddMenu/AddMenu';
+import Menu from './Menu/Menu';
 const mapStateToProps = state => {
     return {
         token: state.token,
@@ -41,12 +40,13 @@ class Main extends Component {
         } else {
             routes = (
                 <Switch>
+                    <Route path="/addmenu" exact component={Menu} />
                     <Route path="/orders" exact component={Orders} />
                     <Route path="/checkout" exact component={Checkout} />
                     <Route path="/logout" exact component={Logout} />
-                    <Route path="/burgerBuilder" exact component={BurgerBuilder}/>
-                    <Route path= "/" exact component={Home}/>
-                    <Route path= "/upload" exact component={ReactFirebaseFileUpload}/>
+                    <Route path="/burgerBuilder" exact component={BurgerBuilder} />
+                    <Route path="/" exact component={Home} />
+                    <Route path="/upload" exact component={ReactFirebaseFileUpload} />
                     <Redirect to="/" />
                 </Switch>
             )
