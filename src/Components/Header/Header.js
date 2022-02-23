@@ -40,7 +40,7 @@ const Header = props => {
         links = (
             <Nav className='mr-auto' navbar>
                 <NavItem>
-                    <Link exact to="/login" className="nav-link">Login</Link>
+                    <Link to="/login" className="nav-link">Login</Link>
                 </NavItem>
             </Nav>
         )
@@ -48,19 +48,19 @@ const Header = props => {
         links = (
             <Nav className='mr-auto' navbar>
                 <NavItem>
-                    <Link exact to="/" className="nav-link">Home</Link>
+                    <Link to="/" className="nav-link">Home</Link>
                 </NavItem>
                 <NavItem>
-                    <Link exact to="/burgerBuilder" className="nav-link">Burger Builder</Link>
+                    <Link to="/burgerBuilder" className="nav-link">Burger Builder</Link>
                 </NavItem>
                 <NavItem>
-                    <Link exact to="/orders" className="nav-link">Orders</Link>
+                    <Link to="/orders" className="nav-link">Orders</Link>
                 </NavItem>
                 <NavItem>
-                    <Link exact to="/logout" className="nav-link">Logout</Link>
+                    <Link to="/logout" className="nav-link">Logout</Link>
                 </NavItem>
                 <NavItem>
-                    <Link exact to="/upload" className="nav-link">Upload Files</Link>
+                    <Link to="/upload" className="nav-link">Upload Files</Link>
                 </NavItem>
             </Nav>
         )

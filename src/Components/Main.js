@@ -41,9 +41,9 @@ class Main extends Component {
         } else {
             routes = (
                 <Switch>
-                    <Route path="/orders" component={Orders} />
-                    <Route path="/checkout" component={Checkout} />
-                    <Route path="/logout" component={Logout} />
+                    <Route path="/orders" exact component={Orders} />
+                    <Route path="/checkout" exact component={Checkout} />
+                    <Route path="/logout" exact component={Logout} />
                     <Route path="/burgerBuilder" exact component={BurgerBuilder}/>
                     <Route path= "/" exact component={Home}/>
                     <Route path= "/upload" exact component={ReactFirebaseFileUpload}/>
