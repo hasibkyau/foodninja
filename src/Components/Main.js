@@ -11,6 +11,8 @@ import { connect } from 'react-redux';
 import { authCheck } from '../redux/authActionCreators';
 import ReactFirebaseFileUpload from '../firebase/ReactFirebaseFileUpload';
 //import AddMenu from './AddMenu/AddMenu';
+import AddMenu from './AddMenu/AddMenu';
+
 import Menu from './Menu/Menu';
 const mapStateToProps = state => {
     return {
@@ -41,6 +43,7 @@ class Main extends Component {
             routes = (
                 <Switch>
                     <Route path="/menu" exact component={Menu} />
+                    <Route path="/addmenu" exact component={AddMenu} />
                     <Route path="/orders" exact component={Orders} />
                     <Route path="/checkout" exact component={Checkout} />
                     <Route path="/logout" exact component={Logout} />
