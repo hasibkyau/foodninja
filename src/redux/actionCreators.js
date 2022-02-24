@@ -67,10 +67,16 @@ const loadDishes = dishes => ({
 
 export const fetchDishes = () => dispatch => {
     axios.get("https://foodninja-4c3c8-default-rtdb.firebaseio.com/MENU_ITEMS/.json")
-    .then(response => dispatch(loadDishes(response.data)))
+    //.then(response => dispatch(loadDishes(response.data)))
     // .then(dishes => dispatch(loadDishes(dishes)))
     // .catch(error => console.log(error))
-    //.then(response => console.log(response.data))
+    .then(response => {
+        //let DISHES : JSON.parse()
+        console.log(response.data);
+        localStorage.setItem("DISHES", JSON.stringify(response.data.dishes));
+        localStorage.setItem("COMMENTS", JSON.stringify(response.data.comments));
+        localStorage.setItem("FEEDBACK", JSON.stringify(response.data.feedback));
+    })
     
 }
 

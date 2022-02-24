@@ -30,7 +30,7 @@ class Menu extends Component {
     render() {
         return (
             <div className="container">
-                {this.props.dishes.comments[0].author}
+                {/* {this.props.dishes.comments[0].author} */}
             </div>
         );
     }

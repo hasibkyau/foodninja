@@ -50,13 +50,13 @@ const Header = props => {
                 <NavItem>
                     <Link to="/" className="nav-link">Home</Link>
                 </NavItem>
+                {/* <NavItem>
+                    <Link to="/menu" className="nav-link">Menu</Link>
+                </NavItem> */}
+
+
                 <NavItem>
                     <Link to="/menu" className="nav-link">Menu</Link>
-                </NavItem>
-
-
-                <NavItem>
-                    <Link to="/addmenu" className="nav-link">Add Dishes</Link>
                 </NavItem>
                 <NavItem>
                     <Link to="/upload" className="nav-link">Upload Files</Link>

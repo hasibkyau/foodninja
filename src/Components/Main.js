@@ -40,7 +40,7 @@ class Main extends Component {
         } else {
             routes = (
                 <Switch>
-                    <Route path="/addmenu" exact component={Menu} />
+                    <Route path="/menu" exact component={Menu} />
                     <Route path="/orders" exact component={Orders} />
                     <Route path="/checkout" exact component={Checkout} />
                     <Route path="/logout" exact component={Logout} />
