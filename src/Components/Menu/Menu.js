@@ -4,7 +4,7 @@ import { fetchDishes } from '../../redux/actionCreators';
 
 const mapStateToProps = state => {
     return {
-        dishes: state.dishes,
+        MENU_ITEMS : state.dishes,
     }
 }
 
@@ -22,15 +22,24 @@ class Menu extends Component {
 
     componentDidMount() {
         this.props.fetchDishes();
+        console.log("Mounted");
     }
 
     componentDidUpdate(){
-        console.log(this.props.dishes);
+        console.log("Updated");
     }
     render() {
+        let menu = this.props.MENU_ITEMS.dishes;
+        let MenuItem = menu.map(item => {
+            return(
+                <div key={item.Id}>
+                    <p>{item.description}</p>
+                </div>
+            )
+        })
         return (
             <div className="container">
-                {this.props.dishes.comments[0].author}
+               {/* {MenuItem} */}
             </div>
         );
     }
