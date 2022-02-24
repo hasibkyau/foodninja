@@ -60,9 +60,9 @@ export const fetchOrders = (token, userId) => dispatch => {
 
 
 
-const loadDishes = dishes => ({
+const loadDishes = MENU_ITEMS => ({
     type: actionTypes.LOAD_DISHES,
-    payload: dishes,
+    payload: MENU_ITEMS,
 })
 
 export const fetchDishes = () => dispatch => {
@@ -71,12 +71,13 @@ export const fetchDishes = () => dispatch => {
     // .then(dishes => dispatch(loadDishes(dishes)))
     // .catch(error => console.log(error))
     .then(response => {
-        //let DISHES : JSON.parse()
-        console.log(response.data);
-        localStorage.setItem("DISHES", JSON.stringify(response.data.dishes));
-        localStorage.setItem("COMMENTS", JSON.stringify(response.data.comments));
-        localStorage.setItem("FEEDBACK", JSON.stringify(response.data.feedback));
+        //console.log("FROM FIREBASE",response.data);
+        localStorage.setItem("MENU_ITEMS", JSON.stringify(response.data));
+        //dispatch(loadDishes(response.data));
+        //localStorage.removeItem("MENU_ITEMS");
+        
     })
+    .catch()
     
 }
 

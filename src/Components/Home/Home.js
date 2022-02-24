@@ -5,10 +5,14 @@ import MenuSection from "./components/MenuSection";
 import FooterBody from "./components/FooterBody";
 import FooterBanner from "./components/FooterBanner";
 import FooterContact from "./components/FooterContact";
+import Menu from "../Menu/Menu";
+
 
 import BannerImg from '../../assets/images/foodninja/bg1.jpg'
 import AdvertiseImg from '../../assets/images/foodninja/foodninja-01.png'
 import Img from '../../assets/images/foodninja/bg3.jpg'
+
+
 class Home extends Component {
     render() {
         document.title = "Home";
@@ -32,6 +36,7 @@ class Home extends Component {
                 />
 
                 <MenuSection />
+                <Menu/>
 
                 <FooterBanner
                     title="Thank you for visiting our site"

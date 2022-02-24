@@ -22,8 +22,7 @@ const INITIAL_STATE = {
     userId: null,
     authLoading: false,
     authFailedMsg: null,
-    dishes: [],
-    comments: [],
+    MENU_ITEMS: [],
 }
 
 export const reducer = (state = INITIAL_STATE, action) => {
@@ -124,7 +123,7 @@ export const reducer = (state = INITIAL_STATE, action) => {
         case actionTypes.LOAD_DISHES:
             return {
                 ...state,
-                dishes: action.payload,
+                MENU_ITEMS: action.payload,
             }
         default:
             return state;
