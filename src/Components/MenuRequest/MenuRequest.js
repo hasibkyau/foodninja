@@ -27,6 +27,7 @@ class Menu extends Component {
             selectedDish: dish,
             modalOpen: !this.state.modalOpen
         });
+        console.log(dish);
     }
 
     componentDidMount() {
