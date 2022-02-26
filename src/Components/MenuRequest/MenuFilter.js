@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, CardText, CardSubtitle, Card, CardImg, CardImgOverlay, CardBody, CardTitle } from 'reactstrap';
+import { Button, CardText, CardSubtitle, Card, CardImg, CardImgOverlay, CardBody, CardTitle, CardFooter } from 'reactstrap';
 //import { baseUrl } from '../../redux/baseUrl';
 
 const MenuFilter = props => {
@@ -7,9 +7,10 @@ const MenuFilter = props => {
         <div className='col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3'>
             <div>
             
-            <Card style={{ margin: "10px", cursor:"pointer" }}  onClick={props.DishSelect}
+            <Card style={{ margin: "10px", cursor:"pointer" }}
                     >
              <CardImg
+                    onClick={props.dishDetail}
                     width="100%"
                     alt={props.dish.name}
                     src={props.dish.url}
@@ -23,8 +24,13 @@ const MenuFilter = props => {
                     <CardText>
                         Price: {props.dish.price}/-
                     </CardText>
-                    <Button>Approve</Button>
                     </CardBody>
+                    <div>
+                    <button onClick={props.dishDetail} style={{}} className='btn btn-danger m-1'>Remove</button>
+                    <button onClick={props.DishApprove} className='btn btn-success'>Approve</button>
+                    
+                    </div>
+                    
             </Card>
             </div>
         </div>

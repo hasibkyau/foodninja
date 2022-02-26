@@ -84,11 +84,11 @@ class Auth extends Component {
                 <div className='d-flex flex-md-row flex-column m-5'>
                     
                     <div className='col m-2'>
-                        <h1><span style={{color:"tomato"}}>food</span><spna>ninja</spna></h1>
+                        <h1><span style={{color:"tomato"}}>food</span><span>ninja</span></h1>
                         <h2>foodninja helps you sell and buy your favourie food.</h2>
                     </div>
 
-                <div style={{
+                <div className='col-md-6' style={{
                     border: "1px grey solid",
                     padding: "15px",
                     borderRadius: "7px",

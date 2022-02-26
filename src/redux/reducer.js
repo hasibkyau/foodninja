@@ -133,6 +133,7 @@ export const reducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 dishes: dishes,
+                MENU_ITEMS: action.payload,
 
             }
         default:
