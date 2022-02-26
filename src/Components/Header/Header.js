@@ -59,6 +59,9 @@ const Header = props => {
                     <Link to="/menu" className="nav-link">Menu</Link>
                 </NavItem>
                 <NavItem>
+                    <Link to="/menurequest" className="nav-link">Menu Request</Link>
+                </NavItem>
+                <NavItem>
                     <Link to="/addmenu" className="nav-link">Add Menu</Link>
                 </NavItem>
                 <NavItem>
