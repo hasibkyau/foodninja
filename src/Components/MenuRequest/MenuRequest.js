@@ -72,10 +72,8 @@ class Menu extends Component {
 
         return (
             <div className="container">
-                <div className="row">
                     <div className='row justify-content-md-center"'>
                         {menu}
-                    </div>
                 </div>
             </div>
         );

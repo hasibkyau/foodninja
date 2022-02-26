@@ -4,7 +4,7 @@ import { Button, CardText, CardSubtitle, Card, CardImg, CardImgOverlay, CardBody
 
 const MenuItem = props => {
     return (
-        <div className='col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3'>
+        <div className='col-6 col-sm-6 col-md-4 col-lg-3 col-xl-3'>
             <div>
             
             <Card style={{ margin: "10px", cursor:"pointer" }}  onClick={props.DishSelect}
@@ -24,8 +24,8 @@ const MenuItem = props => {
                         Price: {props.dish.price}/-
                     </CardText>
                     <div>
-                    <button>Remove</button>
-                    <button>Delete</button>
+                    <button onClick={props.DishRemove} className='btn btn-success'>Remove</button>
+                    <button onClick={props.DishDelete} className='btn btn-danger'>Delete</button>
                     </div>
                     </CardBody>
             </Card>

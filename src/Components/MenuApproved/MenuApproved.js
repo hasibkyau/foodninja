@@ -21,7 +21,22 @@ class MenuApproved extends Component {
         modalOpen: false,
     }
 
-    onDishSelect = dish => {
+    onDishRemove = dish => {
+        window.alert("are you sure?");
+        this.setState({
+            selectedDish: dish,
+            modalOpen: !this.state.modalOpen
+        });
+    }
+
+    onDishDelete = dish => {
+        if (confirm('Are you sure you want to save this thing into the database?')) {
+            // Save it!
+            console.log('Thing was saved to the database.');
+          } else {
+            // Do nothing!
+            console.log('Thing was not saved to the database.');
+          }
         this.setState({
             selectedDish: dish,
             modalOpen: !this.state.modalOpen
@@ -42,7 +57,8 @@ class MenuApproved extends Component {
                 <MenuItem
                     dish={item}
                     key={item.id}
-                    DishSelect={() => this.onDishSelect(item)}
+                    DishRemove={() => this.onDishRemove(item)}
+                    DishDelete={() => this.onDishDelete(item)}
                 />
             );
         }

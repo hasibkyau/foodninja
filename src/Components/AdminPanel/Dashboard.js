@@ -1,75 +1,20 @@
 import React, { Component } from "react";
-import { Link, NavLink } from "react-router-dom";
-import { Card, CardBody, CardImg, CardFooter, CardHeader, CardText } from "reactstrap";
-import { CardImgOverlay } from "reactstrap";
-import img from '../../assets/images/dashboard/shopping-bag.png'
+import { Card, CardBody, CardImg, CardFooter, CardHeader } from "reactstrap";
+import MenuApproved from "../MenuApproved/MenuApproved";
+import MenuRequest from "../MenuRequest/MenuRequest";
 class DashBoard extends Component {
-    render() {
-        return (
-            <div className="container">
-                <div className="row">
-
-                    <div className="col-2">
-                        left
-                    </div>
-
-                    <div className="col-8">
-                        <div className="row">
-                            <div className='col-12 col-sm-6'>
-                                <Card>
-                                    <NavLink to="/menurequest" style={{ textDecoration: "none", color: "tomato", margin: "0px", padding: "0px" }}>
-                                        <img height="150px" src={img} />
-                                        <CardImgOverlay>Hello</CardImgOverlay>
-                                        <CardFooter>
-                                            <CardText>
-                                                New Item Requests: 10
-                                            </CardText>
-                                        </CardFooter>
-                                    </NavLink>
-                                </Card>
-                            </div>
-
-                            <div className='col-12 col-sm-6'>
-                                <Card>
-                                    <NavLink to="/approvedmenu" style={{ textDecoration: "none", color: "tomato", margin: "0px", padding: "0px" }}>
-                                        <img height="150px" src={img} />
-                                        <CardFooter>
-                                            <CardText>
-                                                Item Approved: 10
-                                            </CardText>
-                                        </CardFooter>
-                                    </NavLink>
-                                </Card>
-                            </div>
-
-
-                            <div className='col-12 col-sm-6'>
-                                <Card>
-                                    <NavLink to="/approvedmenu" style={{ textDecoration: "none", color: "tomato", margin: "0px", padding: "0px" }}>
-                                        <img height="150px" src={img} />
-                                        <CardFooter>
-                                            <CardText>
-                                                New Oreder: 10
-                                            </CardText>
-                                        </CardFooter>
-                                    </NavLink>
-                                </Card>
-                            </div>
-                            <div className='col-12 col-sm-6'>
-                                <Card>
-                                    <NavLink to="/approvedmenu" style={{ textDecoration: "none", color: "tomato", margin: "0px", padding: "0px" }}>
-                                        <img height="150px" src={img} />
-                                        <CardFooter>
-                                            <CardText>
-                                                Order Confirmed: 10
-                                            </CardText>
-                                        </CardFooter>
-                                    </NavLink>
-                                </Card>
-                            </div>
-                        </div>
-                    </div>
+    render(){
+        return(
+            <div style={{backgroundColor:'tomato'}}>
+               <div className="container">
+                <h3 style={{backgroundColor:"tomato", color:"white", padding:"10px"}}>New Items</h3>
+                <div>
+                <MenuRequest/>
                 </div>
+                <h3 style={{backgroundColor:"tomato", color:"white", padding:"10px"}}>Aprroved Items</h3>
+                <MenuApproved/>
+                </div> 
+            
             </div>
         );
     }

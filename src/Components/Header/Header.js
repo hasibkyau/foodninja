@@ -46,9 +46,6 @@ const Header = props => {
                         <Link to="/addmenu" className="nav-link">Add Menu</Link>
                     </NavItem>
                     <NavItem>
-                        <Link to="/upload" className="nav-link">Upload Files</Link>
-                    </NavItem>
-                    <NavItem>
                         <Link to="/burgerBuilder" className="nav-link">Burger Builder</Link>
                     </NavItem>
                     <NavItem>
@@ -72,9 +69,6 @@ const Header = props => {
                     </NavItem>
                     <NavItem>
                         <Link to="/addmenu" className="nav-link">Add Menu</Link>
-                    </NavItem>
-                    <NavItem>
-                        <Link to="/upload" className="nav-link">Upload Files</Link>
                     </NavItem>
                     <NavItem>
                         <Link to="/burgerBuilder" className="nav-link">Burger Builder</Link>
