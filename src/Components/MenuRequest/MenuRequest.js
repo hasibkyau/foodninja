@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchDishes } from '../../redux/actionCreators';
-import MenuItem from './MenuItems';
-
+import MenuFilter from './MenuFilter';
 const mapStateToProps = state => {
-    return {  
+    return {
+        //MENU_ITEMS: state.dishes,
+        //MENU_ITEMS: state.MENU_ITEMS,
         dishes: state.dishes,
     }
 }
@@ -30,6 +31,8 @@ class Menu extends Component {
 
     componentDidMount() {
         this.props.fetchDishes();
+        console.log("mounted");
+    
     }
 
     render() {
@@ -37,15 +40,13 @@ class Menu extends Component {
         let dishes = this.props.dishes;
         
         const menu = dishes.map(item => {
-            if(item.approved){
             return (
-                <MenuItem
+                <MenuFilter
                     dish={item}
                     key={item.id}
                     DishSelect={() => this.onDishSelect(item)}
                 />
             );
-        }
         })
 
         return (

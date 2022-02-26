@@ -60,18 +60,18 @@ export const fetchOrders = (token, userId) => dispatch => {
 
 
 
-const loadDishes = dishes => ({
+const loadDishes = MENU_ITEMS => ({
     type: actionTypes.LOAD_DISHES,
-    payload: dishes,
+    payload: MENU_ITEMS,
 })
 
 export const fetchDishes = () => dispatch => {
-    console.log("hello");
-    axios.get("https://foodninja-4c3c8-default-rtdb.firebaseio.com/MENU_ITEMS/.json")
-    .then(response => dispatch(loadDishes(response.data)))
-    // .then(dishes => dispatch(loadDishes(dishes)))
-    // .catch(error => console.log(error))
-    //.then(response => console.log(response.data))
+
+    axios.get("https://foodninja-4c3c8-default-rtdb.firebaseio.com/dishes/.json")
+    .then(response => {
+        dispatch(loadDishes(response.data));        
+    })
+    .catch()
     
     
 }
