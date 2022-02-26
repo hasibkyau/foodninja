@@ -71,137 +71,158 @@ class AddMenu extends Component {
                     pickupPoint: "",
                     url: "",
                     imgName: "",
-                    seller:""
+                    seller: ""
                 }
             }
 
             onSubmit={
                 (values) => {
                     values.url = this.state.url,
-                    values.imgName = this.state.imgName,
-                    axios.post('https://foodninja-4c3c8-default-rtdb.firebaseio.com/dishes.json',values)
+                        values.imgName = this.state.imgName,
+                        axios.post('https://foodninja-4c3c8-default-rtdb.firebaseio.com/dishes.json', values)
                     console.log("axios post", values);
                 }
             }
         >
             {({ values, handleChange, handleSubmit }) => (
-                <div className="container">
-                    <div className="row">
-                        <div className="col-8">
-                            <form onSubmit={handleSubmit}>
-                                <p style={{fontWeight:"bold"}}>Dish info</p>
+                <div className="d-flex flex-md-row flex-column">
+
+
+                    <div className="m-2" >
+                    <p style={{ fontWeight: "bold" }}>Dish image</p>
+                            
+                        <input className="form-control" type="file" onChange={this.handleInputFileChange} />
+                        <progress className="form-control" value={this.state.progress} max="100" />
+                        <br />
+                        <Card>
+                            <CardBody>
+                                <img width={200} height={200} src={this.state.url} />
+                            </CardBody>
+                        </Card>
+                    </div>
+
+
+                    <div className="col-8">
+                        <form onSubmit={handleSubmit}>
+                            <p style={{ fontWeight: "bold" }}>Dish info</p>
                             <input
-                                    name="name"
-                                    placeholder="Enter Menu Name"
-                                    className="form-control"
-                                    value={values.name}
-                                    onChange={handleChange}
-                                />
-                                <br/>
+                                name="name"
+                                placeholder="Enter Menu Name"
+                                className="form-control"
+                                value={values.name}
+                                onChange={handleChange}
+                            />
+                            <br />
 
-                                <input
-                                    name="price"
-                                    placeholder="Enter Menu Price"
-                                    className="form-control"
-                                    value={values.price}
-                                    onChange={handleChange}
-                                />
-                                <br/>
+                            <input
+                                name="price"
+                                placeholder="Enter Menu Price"
+                                className="form-control"
+                                value={values.price}
+                                onChange={handleChange}
+                            />
+                            <br />
 
-                                <select 
+                            <select
                                 name="category"
                                 value={values.pickupPoint}
                                 className="form-control"
                                 onChange={handleChange}
-                                >
-                                    <option value={null}>Select category</option>
-                                    <option value="meal">Meal</option>
-                                    <option value="fastfood">Fast Food</option>
-                                    <option value="cookie">Cookie</option>
-                                    <option value="cake">Cake</option>
-                                    <option value="dessert">Dessert</option>
-                                    <option value="chocolate">Chocolate</option>
-                                </select>
-                                <br/>
+                            >
+                                <option value={null}>Select category</option>
+                                <option value="meal">Meal</option>
+                                <option value="fastfood">Fast Food</option>
+                                <option value="cookie">Cookie</option>
+                                <option value="cake">Cake</option>
+                                <option value="dessert">Dessert</option>
+                                <option value="chocolate">Chocolate</option>
+                            </select>
+                            <br />
 
 
-                                <textarea
-                                    name="description"
-                                    placeholder="Enter Menu Description"
-                                    className="form-control"
-                                    value={values.description}
-                                    onChange={handleChange}
-                                />
-                                <br/>
-                                <hr/>
-                                
-                                <p style={{fontWeight:"bold"}}>Seller Info</p>
-                                 <input
-                                    name="seller"
-                                    placeholder="Enter you Name"
-                                    className="form-control"
-                                    value={values.seller}
-                                    onChange={handleChange}
-                                />
-                                <br/>
+                            <textarea
+                                name="description"
+                                placeholder="Enter Menu Description"
+                                className="form-control"
+                                value={values.description}
+                                onChange={handleChange}
+                            />
+                            <br />
+                            <hr />
 
-                                <input
-                                    type="number"
-                                    name="phone"
-                                    placeholder="Contact number"
-                                    className="form-control"
-                                    value={values.phone}
-                                    onChange={handleChange}
-                                />
-                                <br/>    
+                            <p style={{ fontWeight: "bold" }}>Seller Info</p>
+                            <input
+                                name="seller"
+                                placeholder="Enter you Name"
+                                className="form-control"
+                                value={values.seller}
+                                onChange={handleChange}
+                            />
+                            <br />
 
-                                <input
-                                    type="email"
-                                    name="email"
-                                    placeholder="Email"
-                                    className="form-control"
-                                    value={values.email}
-                                    onChange={handleChange}
-                                />
-                                <br/>
+                            <input
+                                type="number"
+                                name="phone"
+                                placeholder="Contact number"
+                                className="form-control"
+                                value={values.phone}
+                                onChange={handleChange}
+                            />
+                            <br />
 
-                                <input                
-                                    name="address"
-                                    placeholder="Current Adress"
-                                    className="form-control"
-                                    value={values.email}
-                                    onChange={handleChange}
-                                />
-                                <br/>
+                            <input
+                                type="email"
+                                name="email"
+                                placeholder="Email"
+                                className="form-control"
+                                value={values.email}
+                                onChange={handleChange}
+                            />
+                            <br />
 
-                                <select 
+                            <input
+                                name="address"
+                                placeholder="Current Adress"
+                                className="form-control"
+                                value={values.address}
+                                onChange={handleChange}
+                            />
+                            <br />
+
+                            <select
                                 name="pickupPoint"
                                 value={values.pickupPoint}
                                 className="form-control"
                                 onChange={handleChange}
-                                >
-                                    <option value={null}>Select where to sell</option>
-                                    <option value="sirajganj">Sirajganj</option>
-                                    <option value="bogura">Bogura</option>
-                                    <option value="mymensing">Mymensing</option>
-                                </select>
+                            >
+                                <option value={null}>Select where to sell</option>
+                                <option value="sirajganj">Sirajganj</option>
+                                <option value="bogura">Bogura</option>
+                                <option value="mymensing">Mymensing</option>
+                            </select>
 
-                                <br/>
-                                <hr/>
-                                <button type="submit" className="btn btn-success">Submit</button>
-                            </form>
-                        </div>
-                        <div className="col-4">
-                            <input className="form-control" type="file" onChange={this.handleInputFileChange} />
-                            <progress className="form-control" value={this.state.progress} max="100" />
                             <br />
-                            <Card>
-                                <CardBody>
-                                    <img width={200} height={200} src={this.state.url} />
-                                </CardBody>
-                            </Card>
-                        </div>
+                            <hr />
+                            <button type="submit" className="btn btn-success">Submit</button>
+                        </form>
                     </div>
+
+
+                    {/* <div className="col-4">
+                        <input className="form-control" type="file" onChange={this.handleInputFileChange} />
+                        <progress className="form-control" value={this.state.progress} max="100" />
+                        <br />
+                        <Card>
+                            <CardBody>
+                                <img width={200} height={200} src={this.state.url} />
+                            </CardBody>
+                        </Card>
+                    </div> */}
+
+                    {/* </div>
+
+                    </div> */}
+
                 </div>
             )}
 
