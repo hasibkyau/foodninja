@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Formik } from "formik";
 import { Card, CardImg, CardBody, Button } from "reactstrap";
 import { storage } from "../../firebase/firebase";
+import axios from "axios";
 
 class AddMenu extends Component {
     state = {
@@ -16,11 +17,12 @@ class AddMenu extends Component {
                 image: e.target.files[0],
                 imgName: e.target.files[0].name
             })
+            this.handleUpload(e.target.files[0]);
         }
     };
 
-    handleUpload = () => {
-        const uploadTask = storage.ref(`images/Menu/${this.state.image.name}`).put(this.state.image);
+    handleUpload = (image) => {
+        const uploadTask = storage.ref(`images/Menu/${image.name}`).put(image);
         uploadTask.on(
             "state_changed",
             snapshot => {
@@ -37,7 +39,7 @@ class AddMenu extends Component {
             () => {
                 storage
                     .ref("images/Menu")
-                    .child(this.state.image.name)
+                    .child(image.name)
                     .getDownloadURL()
                     .then(url => {
                         this.setState({
@@ -76,8 +78,9 @@ class AddMenu extends Component {
             onSubmit={
                 (values) => {
                     values.url = this.state.url,
-                    imgName = this.state.imgName,
-                    console.log(values);
+                    values.imgName = this.state.imgName,
+                    axios.post('https://foodninja-4c3c8-default-rtdb.firebaseio.com/dishes.json',values)
+                    console.log("axios post", values);
                 }
             }
         >
@@ -192,10 +195,9 @@ class AddMenu extends Component {
                             <input className="form-control" type="file" onChange={this.handleInputFileChange} />
                             <progress className="form-control" value={this.state.progress} max="100" />
                             <br />
-                            <img src={this.state.url} />
                             <Card>
                                 <CardBody>
-                                    <img width={200} height={200} src={this.state.MyUrl} />
+                                    <img width={200} height={200} src={this.state.url} />
                                 </CardBody>
                             </Card>
                         </div>
