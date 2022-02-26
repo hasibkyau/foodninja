@@ -1,7 +1,6 @@
 import axios from 'axios';
 import React, { Component } from 'react';
 import { Form, Button, Input } from 'reactstrap';
-import { baseUrl } from '../../redux/baseUrl';
 
 class CommentForm extends Component {
     constructor(props) {
