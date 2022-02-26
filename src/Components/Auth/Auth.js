@@ -21,7 +21,8 @@ const mapStateToProps = state =>{
 
 class Auth extends Component {
     state = {
-        mode: "Sign Up"
+        mode: "Login",
+        account: "Create New Account"
     }
 
     switchModeHandler = () => {
@@ -79,17 +80,21 @@ class Auth extends Component {
             }}
         >
             {({ values, handleChange, handleSubmit, errors }) => (
+                
+                <div className='d-flex flex-md-row flex-column m-5'>
+                    
+                    <div className='col m-2'>
+                        <h1><span style={{color:"tomato"}}>food</span><spna>ninja</spna></h1>
+                        <h2>foodninja helps you sell and buy your favourie food.</h2>
+                    </div>
+
                 <div style={{
                     border: "1px grey solid",
                     padding: "15px",
                     borderRadius: "7px",
                 }}>
-                    <button style={{
-                        width: "100%",
-                        backgroundColor: "#D70F64",
-                        color: "white",
-                    }} className="btn btn-lg" onClick={this.switchModeHandler}>Switch to {this.state.mode === "Sign Up" ? "Login" : "Sign Up"}</button>
-                    <br /><br />
+                    
+
                     <form onSubmit={handleSubmit}>
                         <input
                             name="email"
@@ -101,6 +106,7 @@ class Auth extends Component {
                         <span style={{ color: "red" }}>{errors.email}</span>
                         <br />
                         <input
+                            type="password"
                             name="password"
                             placeholder="Password"
                             className="form-control"
@@ -109,6 +115,7 @@ class Auth extends Component {
                         />
                         <span style={{ color: "red" }}>{errors.password}</span>
                         <br />
+                        <p>forgot password?</p>
 
                         {this.state.mode === "Sign Up" ? <div>
                             <input
@@ -120,11 +127,24 @@ class Auth extends Component {
                             />
                             <span style={{ color: "red" }}>{errors.passwordConfirm}</span>
                             <br />
+                            
                         </div> : null}
 
-                        <button type="submit" className="btn btn-success">{this.state.mode === "Sign Up" ? "Sign Up" : "Login"}</button>
+                        <button type="submit" style={{width:"100%"}} className="btn btn-success">{this.state.mode === "Sign Up" ? "Sign Up" : "Login"}</button>
+                        <p>Create New Account</p>
+                        <button style={{
+                        width: "100%",
+                        backgroundColor: "tomato",
+                        color: "white",
+                        
+                    }} className="btn btn-lg" onClick={this.switchModeHandler}>{this.state.mode === "Sign Up" ? "Allready Have Account?" : "Create New Account"}</button>
+                    <br /><br />
+                        <hr/>
+                        
                     </form>
-                </div>)}
+                </div>
+                </div>
+                )}
         </Formik>
         }
         return (
