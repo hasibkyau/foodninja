@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchDishes } from '../../redux/actionCreators';
 import MenuItem from './MenuItems';
+import axios from 'axios';
 
 const mapStateToProps = state => {
     return {  
@@ -22,7 +23,16 @@ class MenuApproved extends Component {
     }
 
     onDishRemove = dish => {
-        window.alert("are you sure?");
+        let id = dish.id;
+        dish.approved = false;
+        if (confirm('Are you sure you want to save this thing into the database?')) {
+            // Save it!
+            axios.put("https://foodninja-4c3c8-default-rtdb.firebaseio.com/dishes/" + id + ".json", dish)
+                .then(response => console.log("has approved", response.data,))
+        } else {
+            // Do nothing!
+            console.log('Thing was not saved to the database.');
+        }
         this.setState({
             selectedDish: dish,
             modalOpen: !this.state.modalOpen
@@ -30,9 +40,11 @@ class MenuApproved extends Component {
     }
 
     onDishDelete = dish => {
+        let id = dish.id;
         if (confirm('Are you sure you want to save this thing into the database?')) {
             // Save it!
-            console.log('Thing was saved to the database.');
+            axios.delete("https://foodninja-4c3c8-default-rtdb.firebaseio.com/dishes/" + id + ".json")
+            .then(response => console.log("Deleted", response.data,))
           } else {
             // Do nothing!
             console.log('Thing was not saved to the database.');
@@ -46,6 +58,7 @@ class MenuApproved extends Component {
     componentDidMount() {
         this.props.fetchDishes();
     }
+    
 
     render() {
         document.title = "foodninja";
