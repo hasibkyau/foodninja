@@ -7,9 +7,10 @@ const MenuItem = props => {
         <div className='col-6 col-sm-6 col-md-4 col-lg-3 col-xl-3'>
             <div>
             
-            <Card style={{ margin: "10px", cursor:"pointer" }}  onClick={props.DishSelect}
+            <Card style={{ margin: "10px", cursor:"pointer" }}
                     >
              <CardImg
+                    onClick={props.DishSelect}
                     width="100%"
                     alt={props.dish.name}
                     src={props.dish.url}

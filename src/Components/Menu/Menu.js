@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchDishes } from '../../redux/actionCreators';
 import MenuItem from './MenuItems';
+import { CardColumns, Modal, ModalBody, ModalFooter, Button } from 'reactstrap';
 
 // import { addComment, fetchDishes, fetchComments} from '../../redux/actionCreator';
 // import Loading from './Loading';
@@ -62,12 +63,35 @@ class Menu extends Component {
         }
         })
 
+        let dishDetail = null;
+            // if (this.state.selectedDish != null) {
+            //     const comments = this.props.comments.comments.filter(comment => comment.dishId === this.state.selectedDish.id
+            //     )
+            //     dishDetail = <DishDetail
+            //         dish={this.state.selectedDish}
+            //         comments={comments}
+            //         addComment={this.props.addComment}
+            //         commentsIsLoading = {this.props.isLoading} />
+            // }
+
         return (
             <div className="container">
                 <div className="row">
                     <div className='row justify-content-md-center"'>
                         {menu}
                     </div>
+                    
+                    <Modal style={{scrollable:"true"}} isOpen={this.state.modalOpen}>
+                            <ModalBody>
+                                {/* {dishDetail} */}
+                            </ModalBody>
+                            <ModalFooter>
+                                <Button color="secondary" onClick={this.toggleModal}>
+                                    Close
+                                </Button>
+                            </ModalFooter>
+                        </Modal>
+
                 </div>
             </div>
         );
