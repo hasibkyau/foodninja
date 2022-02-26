@@ -3,15 +3,22 @@ import { connect } from 'react-redux';
 import { fetchDishes } from '../../redux/actionCreators';
 import MenuItem from './MenuItems';
 
+// import { addComment, fetchDishes, fetchComments} from '../../redux/actionCreator';
+// import Loading from './Loading';
+// import { Alert } from 'reactstrap';
+
+
 const mapStateToProps = state => {
     return {  
         dishes: state.dishes,
+        // comments: state.comments
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        fetchDishes: () => dispatch(fetchDishes()),
+        fetchDishes: () => dispatch(fetchDishes()),     
+        // fetchComments: () => dispatch(fetchComments())
     }
 }
 
@@ -30,6 +37,13 @@ class Menu extends Component {
 
     componentDidMount() {
         this.props.fetchDishes();
+        // this.props.fetchComments();
+    }
+
+    toggleModal = () => {
+        this.setState({
+            modalOpen: !this.state.modalOpen
+        })
     }
 
     render() {
