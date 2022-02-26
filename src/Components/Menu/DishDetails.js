@@ -3,12 +3,11 @@ import { Card, CardImg, CardBody, CardTitle, CardText } from 'reactstrap';
 import LoadComments from './components/LoadComments';
 import CommentForm from './components/CommentForm';
 
-
 const DishDetail = props => {
     return (
         <div>
             <Card style={{ marginTop: "10px" }}>
-                <CardImg top src={baseUrl + props.dish.image} alt={props.dish.name} />
+                <CardImg top src={props.dish.url} />
                 <CardBody style={{ textAlign: "left" }}>
                     <CardTitle>{props.dish.name}</CardTitle>
                     <CardText>
@@ -19,9 +18,10 @@ const DishDetail = props => {
                     </CardText>
                     <hr />
                     <CardTitle tag="h4">Comments:</CardTitle>
-                    <LoadComments comments={props.comments} commentIsLoading = {props.commentIsLoading}></LoadComments>
+                    {/* <LoadComments comments={props.comments} commentIsLoading = {props.commentIsLoading}></LoadComments> */}
                     <hr />
-                    <CommentForm dishId={props.dish.id} addComment={props.addComment} />
+                    {/* <CommentForm dishId={props.dish.id} addComment={props.addComment} /> */}
+                    <CommentForm dishId={props.dish.id} />
                 </CardBody>
             </Card>
         </div>

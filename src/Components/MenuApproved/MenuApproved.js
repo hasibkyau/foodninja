@@ -4,7 +4,7 @@ import { fetchDishes } from '../../redux/actionCreators';
 import MenuItem from './MenuItems';
 import axios from 'axios';
 import { CardColumns, Modal, ModalBody, ModalFooter, Button } from 'reactstrap';
-
+import DishDetail from '../Menu/DishDetails';
 
 // import { addComment, fetchDishes, fetchComments} from '../../redux/actionCreator';
 // import Loading from './Loading';
@@ -91,15 +91,16 @@ class MenuApproved extends Component {
         })
 
         let dishDetail = null;
-            // if (this.state.selectedDish != null) {
-            //     const comments = this.props.comments.comments.filter(comment => comment.dishId === this.state.selectedDish.id
-            //     )
-            //     dishDetail = <DishDetail
-            //         dish={this.state.selectedDish}
-            //         comments={comments}
-            //         addComment={this.props.addComment}
-            //         commentsIsLoading = {this.props.isLoading} />
-            // }
+            if (this.state.selectedDish != null) {
+                //const comments = this.props.comments.comments.filter(comment => comment.dishId === this.state.selectedDish.id)
+                
+                dishDetail = <DishDetail
+                    dish={this.state.selectedDish}
+                    //comments={comments}
+                    //addComment={this.props.addComment}
+                    //commentsIsLoading = {this.props.isLoading} 
+                    />
+            }
 
         return (
             <div className="container">
@@ -110,7 +111,7 @@ class MenuApproved extends Component {
 
                     <Modal style={{scrollable:"true"}} isOpen={this.state.modalOpen}>
                             <ModalBody>
-                                {/* {dishDetail} */}
+                                {dishDetail}
                             </ModalBody>
                             <ModalFooter>
                                 <Button color="secondary" onClick={this.toggleModal}>
