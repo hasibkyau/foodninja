@@ -66,11 +66,8 @@ const loadDishes = MENU_ITEMS => ({
 })
 
 export const fetchDishes = () => dispatch => {
-
     axios.get("https://foodninja-4c3c8-default-rtdb.firebaseio.com/dishes/.json")
-    .then(response => {
-        dispatch(loadDishes(response.data));        
-    })
+    .then(response => dispatch(loadDishes(response.data)))
     .catch()
     
     
