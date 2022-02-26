@@ -5,9 +5,8 @@ import MenuItem from './MenuItems';
 
 const mapStateToProps = state => {
     return {
-        //MENU_ITEMS: state.dishes,
-        //MENU_ITEMS: state.MENU_ITEMS,
         dishes: state.dishes,
+
     }
 }
 
@@ -32,8 +31,6 @@ class Menu extends Component {
 
     componentDidMount() {
         this.props.fetchDishes();
-        console.log("mounted");
-    
     }
 
     render() {
