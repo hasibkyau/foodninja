@@ -3,6 +3,10 @@ import { Formik } from "formik";
 import { Card, CardImg, CardBody, Button } from "reactstrap";
 import { storage } from "../../firebase/firebase";
 import axios from "axios";
+import AdvertiseSection from "../Home/components/AdvertiseSection";
+
+// import AdvertiseImg from '../../assets/images/foodninja/foodninja-01.png'
+import AdvertiseImg from '../../assets/images/foodninja/foodninja-01.png';
 
 class AddMenu extends Component {
     state = {
@@ -102,7 +106,7 @@ class AddMenu extends Component {
                     </div>
 
 
-                    <div className="col-8">
+                    <div className="col-8" style={{backgroundColor:"white", margin:"15px", borderRadius:'10px'}}>
                         <form onSubmit={handleSubmit}>
                             <p style={{ fontWeight: "bold" }}>Dish info</p>
                             <input
@@ -229,8 +233,16 @@ class AddMenu extends Component {
         </Formik>
 
         return (
-            <div>
+            <div style={{backgroundColor:'tomato'}}>
+                <div className="container">
+                <AdvertiseSection
+                    AdvertiseTitle='List your restaurant or foods on foodninja'
+                    AdvertiseDetails="Would you like millions of new customers to enjoy your amazing food and groceries? So would we! It's simple: we list your menu and product lists online, help you process orders, pick them up, and deliver them to hungry ninjas – in a heartbeat! Interested? Let's start our partnership today!"
+                    button={{ text: "Get Started" }}
+                     bgImg= {AdvertiseImg}
+                />
                 {form}
+                </div>
             </div>
         );
 

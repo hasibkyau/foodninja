@@ -14,9 +14,13 @@ import ReactFirebaseFileUpload from '../firebase/ReactFirebaseFileUpload';
 import AddMenu from './AddMenu/AddMenu';
 import MenuRequest from './MenuRequest/MenuRequest';
 import Menu from './Menu/Menu';
+import MenuApproved from './MenuApproved/MenuApproved';
+import DashBoard from './AdminPanel/Dashboard';
+
 const mapStateToProps = state => {
     return {
         token: state.token,
+        userId: state.userId,
     }
 }
 
@@ -31,6 +35,7 @@ class Main extends Component {
         this.props.authCheck();
     }
     render() {
+        let adminpanel = null;
         let routes = null;
         if (this.props.token === null) {
             routes = (
@@ -40,25 +45,45 @@ class Main extends Component {
                 </Switch>
             )
         } else {
-            routes = (
-                <Switch>
-                    <Route path="/menu" exact component={Menu} />
-                    <Route path="/menurequest" exact component={MenuRequest}/>
-                    <Route path="/addmenu" exact component={AddMenu} />
-                    <Route path="/orders" exact component={Orders} />
-                    <Route path="/checkout" exact component={Checkout} />
-                    <Route path="/logout" exact component={Logout} />
-                    <Route path="/burgerBuilder" exact component={BurgerBuilder} />
-                    <Route path="/" exact component={Home} />
-                    <Route path="/upload" exact component={ReactFirebaseFileUpload} />
-                    <Redirect to="/" />
-                </Switch>
-            )
+
+            if (this.props.userId === "3RssjKXpJVhB6XEudlV5Df9hxfv2") {
+                routes = (
+                    <Switch>
+                        <Route path="/menu" exact component={Menu} />
+                        <Route path="/menurequest" exact component={MenuRequest} />
+                        <Route path="/addmenu" exact component={AddMenu} />
+                        <Route path="/orders" exact component={Orders} />
+                        <Route path="/checkout" exact component={Checkout} />
+                        <Route path="/logout" exact component={Logout} />
+                        <Route path="/burgerBuilder" exact component={BurgerBuilder} />
+                        <Route path="/" exact component={Home} />
+                        <Route path="/approvedmenu" exact component={MenuApproved} />
+                        <Route path="/upload" exact component={ReactFirebaseFileUpload} />
+                        <Route path="/dashboard" exact component = {DashBoard}/>
+                        <Redirect to="/" />
+                    </Switch>
+                )
+
+            } else {
+                routes = (
+                    <Switch>
+                        <Route path="/menu" exact component={Menu} />
+                        <Route path="/addmenu" exact component={AddMenu} />
+                        <Route path="/orders" exact component={Orders} />
+                        <Route path="/checkout" exact component={Checkout} />
+                        <Route path="/logout" exact component={Logout} />
+                        <Route path="/burgerBuilder" exact component={BurgerBuilder} />
+                        <Route path="/" exact component={Home} />
+                        <Route path="/upload" exact component={ReactFirebaseFileUpload} />
+                        <Redirect to="/" />
+                    </Switch>
+                )
+            }
         }
         return (
             <div>
                 <Header />
-                <div className="container">
+                <div >
                     {routes}
                 </div>
             </div>
