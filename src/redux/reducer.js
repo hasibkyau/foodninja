@@ -22,8 +22,8 @@ const INITIAL_STATE = {
     userId: null,
     authLoading: false,
     authFailedMsg: null,
+    MENU_ITEMS: [],
     dishes: [],
-    comments: [],
 }
 
 export const reducer = (state = INITIAL_STATE, action) => {
@@ -122,9 +122,18 @@ export const reducer = (state = INITIAL_STATE, action) => {
 
 
         case actionTypes.LOAD_DISHES:
+
+            let dishes = [];
+            for (let key in action.payload) {
+                dishes.push({
+                    ...action.payload[key],
+                    id: key,
+                })
+            }
             return {
                 ...state,
-                dishes: action.payload,
+                dishes: dishes,
+
             }
         default:
             return state;
