@@ -4,6 +4,11 @@ import { fetchDishes } from '../../redux/actionCreators';
 import MenuFilter from './MenuFilter';
 import axios from 'axios';
 import { Redirect } from 'react-router/cjs/react-router.min';
+import { CardColumns, Modal, ModalBody, ModalFooter, Button } from 'reactstrap';
+import DishDetail from '../Menu/DishDetails';
+// import { addComment, fetchDishes, fetchComments} from '../../redux/actionCreator';
+// import Loading from './Loading';
+// import { Alert } from 'reactstrap';
 
 const mapStateToProps = state => {
     return {
@@ -37,7 +42,6 @@ class Menu extends Component {
             // Do nothing!
             console.log('Thing was not saved to the database.');
         }
-        this.setState({})
     }
 
     onDishDelete = dish => {
@@ -50,7 +54,6 @@ class Menu extends Component {
             // Do nothing!
             console.log('Thing was not saved to the database.');
           }
-        this.props.fetchDishes();
     }
 
     onDishDetail = dish => {
@@ -66,6 +69,12 @@ class Menu extends Component {
     //     console.log("mounted");
 
     // }
+
+    toggleModal = () => {
+        this.setState({
+            modalOpen: !this.state.modalOpen
+        })
+    }
 
     render() {
         document.title = "foodninja";
@@ -85,11 +94,32 @@ class Menu extends Component {
             }
         })
 
+        let dishDetail = null;
+        if (this.state.selectedDish != null) {
+                //const comments = this.props.comments.comments.filter(comment => comment.dishId === this.state.selectedDish.id)
+                dishDetail = <DishDetail
+                    dish={this.state.selectedDish}
+                    //comments={comments}
+                    //addComment={this.props.addComment}
+                    //commentsIsLoading = {this.props.isLoading} 
+                    />
+            }
+
         return (
             <div className="container">
                 <div className='row justify-content-md-center"'>
                     {menu}
                 </div>
+                <Modal style={{scrollable:"true"}} isOpen={this.state.modalOpen}>
+                            <ModalBody>
+                                {dishDetail}
+                            </ModalBody>
+                            <ModalFooter>
+                                <Button color="secondary" onClick={this.toggleModal}>
+                                    Close
+                                </Button>
+                            </ModalFooter>
+                        </Modal>
             </div>
         );
     }
