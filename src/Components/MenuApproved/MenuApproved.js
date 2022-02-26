@@ -55,9 +55,9 @@ class MenuApproved extends Component {
         });
     }
 
-    componentDidMount() {
-        this.props.fetchDishes();
-    }
+    // componentDidMount() {
+    //     this.props.fetchDishes();
+    // }
     
 
     render() {

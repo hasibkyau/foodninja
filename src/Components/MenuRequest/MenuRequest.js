@@ -37,6 +37,7 @@ class Menu extends Component {
             // Do nothing!
             console.log('Thing was not saved to the database.');
         }
+        this.setState({})
     }
 
     onDishDelete = dish => {
@@ -49,7 +50,7 @@ class Menu extends Component {
             // Do nothing!
             console.log('Thing was not saved to the database.');
           }
-
+        this.props.fetchDishes();
     }
 
     onDishDetail = dish => {
@@ -60,11 +61,11 @@ class Menu extends Component {
         console.log("details", dish);
     }
 
-    componentDidMount() {
-        this.props.fetchDishes();
-        console.log("mounted");
+    // componentDidMount() {
+    //     this.props.fetchDishes();
+    //     console.log("mounted");
 
-    }
+    // }
 
     render() {
         document.title = "foodninja";
