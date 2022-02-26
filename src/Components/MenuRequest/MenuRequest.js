@@ -27,16 +27,16 @@ class Menu extends Component {
     }
 
     onDishApprove = dish => {
-
         let id = dish.id;
-
-        // axios.post('https://foodninja-4c3c8-default-rtdb.firebaseio.com/APPROVED_MENU.json', dish)
-        // .then(console.log("Uploading to approve database: ",dish))
-        // .then(data => console.log("suucess: ", data))
-        // .catch(err => console.log("Error: ", err))
-
+        dish.approved = true;
         axios.put("https://foodninja-4c3c8-default-rtdb.firebaseio.com/dishes/"+ id + ".json", dish)
         .then(response => console.log("has approved", response.data, ))        
+    }
+
+    onDishDelete = dish => {
+        let id = dish.id;
+        axios.delete("https://foodninja-4c3c8-default-rtdb.firebaseio.com/dishes/"+ id + ".json")
+        .then(response => console.log("Deleted", response.data, ))        
     }
 
     onDishDetail = dish =>{
@@ -62,8 +62,9 @@ class Menu extends Component {
                 <MenuFilter
                     dish={item}
                     key={item.id}
-                    DishApprove={() => this.onDishApprove(item)}
+                    dishApprove={() => this.onDishApprove(item)}
                     dishDetail = {() => this.onDishDetail(item)}
+                    dishDelete = {() => this.onDishDelete(item)}
                 />
             );
         }
