@@ -1,5 +1,6 @@
 import * as actionTypes from './actionTypes';
 import { combineReducers } from 'redux';
+import axios from 'axios';
 
 const INGREDIENT_PRICES = {
     salad: 20,
@@ -24,6 +25,7 @@ const INITIAL_STATE = {
     authFailedMsg: null,
     MENU_ITEMS: [],
     dishes: [],
+    userProfile: null,
 }
 
 export const reducer = (state = INITIAL_STATE, action) => {
@@ -91,11 +93,25 @@ export const reducer = (state = INITIAL_STATE, action) => {
 
         //Auth Cases
         case actionTypes.AUTH_SUCCESS:
+            let info = [];
+            axios.get('https://foodninja-4c3c8-default-rtdb.firebaseio.com/user_profile.json')
+            .then(response => {
+            for (let key in response.data) {
+                if (response.data[key].userId == action.payload.userId) {
+                    info.push({
+                        ...response.data[key],
+                        id: key,
+                    })
+                }
+
+            }
+            })
             return {
                 ...state,
                 token: action.payload.token,
                 userId: action.payload.userId,
                 authFailedMsg: null,
+                userProfile: info,
             }
         case actionTypes.AUTH_LOGOUT:
             return {

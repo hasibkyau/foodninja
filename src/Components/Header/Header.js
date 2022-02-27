@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Navbar, NavbarBrand, Nav, NavItem, NavbarToggler, Collapse, } from 'reactstrap';
 import LOGO from '../../assets/Logo';
@@ -9,22 +9,27 @@ const mapStateToProps = state => {
     return {
         token: state.token,
         userId: state.userId,
+        userProfile: state.userProfile,
     }
 }
 
-const Header = props => {
-
-    const [NavOpen, setNavOpen] = useState(false);
-    // const [MyInfo, setMyInfo] = useState({});
-
-    const navToggle = () => {
-        const toggle = !NavOpen;
-        setNavOpen(toggle);
+class Header extends Component {
+    state = {
+        NavOpen: false,
     }
 
 
+    navToggle = () => {
+        this.setState({
+            NavOpen: !this.state.NavOpen,
+        })
+    }
+
+
+    render(){
+
     let links = null;
-    if (props.token === null) {
+    if (this.props.token === null) {
         links = (
             <Nav className='mr-auto' navbar>
                 <NavItem>
@@ -33,7 +38,7 @@ const Header = props => {
             </Nav>
         )
     } else {
-        if (props.userId === "3RssjKXpJVhB6XEudlV5Df9hxfv2") {
+        if (this.props.userId === "YswMnUug7edGO7TlZlJsWpFhKbp2") {
             links = (
                 <Nav className='mr-auto' navbar>
                     <NavItem>
@@ -87,11 +92,11 @@ const Header = props => {
         <div>
             <Navbar light color="light" expand="sm">
                 <div className='container'>
-                    <NavbarToggler onClick={navToggle} />
+                    <NavbarToggler onClick={this.navToggle} />
                     <NavbarBrand href="/">
                         <LOGO />
                     </NavbarBrand>
-                    <Collapse isOpen={NavOpen} navbar>
+                    <Collapse isOpen={this.state.NavOpen} navbar>
                         {links}
                     </Collapse>
 
@@ -99,6 +104,7 @@ const Header = props => {
             </Navbar>
         </div>
     )
+}
 }
 
 export default connect(mapStateToProps)(Header);

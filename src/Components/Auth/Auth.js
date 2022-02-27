@@ -8,7 +8,7 @@ import Spinner from '../Spinner/Spinner'
 
 const mapDispatchToProps = dispatch => {
     return {
-        auth: (email, password, mode) => dispatch(auth(email, password, mode))
+        auth: (email, password, mode, fName, lName) => dispatch(auth(email, password, mode, fName, lName))
     }
 }
 
@@ -41,6 +41,8 @@ class Auth extends Component {
             form = <Formik
             initialValues={
                 {
+                    fName:"",
+                    lName:"",
                     email: "",
                     password: "",
                     passwordConfirm: "",
@@ -49,7 +51,7 @@ class Auth extends Component {
 
             onSubmit={
                 (values) => {
-                    this.props.auth(values.email, values.password, this.state.mode);
+                    this.props.auth(values.email, values.password, this.state.mode, values.fName, values.lName);
                 }
             }
 
@@ -65,7 +67,7 @@ class Auth extends Component {
                 if (!values.password) {
                     errors.password = 'Required';
                 } else if (values.password.length < 4) {
-                    errors.password = 'Must be atleast 4 characters!';
+                    errors.password = 'Must be atleast 6 characters!';
                 }
 
                 if (this.state.mode === "Sign Up") {
@@ -96,15 +98,39 @@ class Auth extends Component {
                     
 
                     <form onSubmit={handleSubmit}>
+
+                    {this.state.mode === "Sign Up" ? <div>
+                            <input
+                                required = "true"
+                                name="fName"
+                                placeholder="First Name"
+                                className="form-control"
+                                value={values.fName}
+                                onChange={handleChange}
+                            />
+                             <br />
+
+                            <input
+                                required = "true"
+                                name="lName"
+                                placeholder="Last Name"
+                                className="form-control"
+                                value={values.lName}
+                                onChange={handleChange}
+                            />
+                            <br />
+                            
+                        </div> : null}
+
                         <input
+                            required = "true"
                             name="email"
                             placeholder="Enter Your Email"
                             className="form-control"
                             value={values.email}
                             onChange={handleChange}
                         />
-                        <span style={{ color: "red" }}>{errors.email}</span>
-                        <br />
+                         <br />
                         <input
                             type="password"
                             name="password"
@@ -113,22 +139,24 @@ class Auth extends Component {
                             value={values.password}
                             onChange={handleChange}
                         />
-                        <span style={{ color: "red" }}>{errors.password}</span>
+                        <span style={{ fontStyle:"italic", color: "black" }}>{errors.password}</span>
                         <br />
-                        <p>forgot password?</p>
+                        
+                        
 
                         {this.state.mode === "Sign Up" ? <div>
                             <input
+                                type="password"
                                 name="passwordConfirm"
                                 placeholder="Confirm Password"
                                 className="form-control"
                                 value={values.passwordConfirm}
                                 onChange={handleChange}
                             />
-                            <span style={{ color: "red" }}>{errors.passwordConfirm}</span>
+                            <span style={{ fontStyle:"italic", color: "black" }}>{errors.passwordConfirm}</span>
                             <br />
                             
-                        </div> : null}
+                        </div> : <p>forgot password?</p>}
 
                         <button type="submit" style={{width:"100%"}} className="btn btn-success">{this.state.mode === "Sign Up" ? "Sign Up" : "Login"}</button>
                         <p>Create New Account</p>

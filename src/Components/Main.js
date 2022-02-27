@@ -46,7 +46,7 @@ class Main extends Component {
             )
         } else {
 
-            if (this.props.userId === "3RssjKXpJVhB6XEudlV5Df9hxfv2") {
+            if (this.props.userId === "YswMnUug7edGO7TlZlJsWpFhKbp2") {
                 routes = (
                     <Switch>
                         <Route path="/menu" exact component={Menu} />

@@ -7,6 +7,7 @@ import AdvertiseSection from "../Home/components/AdvertiseSection";
 
 // import AdvertiseImg from '../../assets/images/foodninja/foodninja-01.png'
 import AdvertiseImg from '../../assets/images/foodninja/foodninja-01.png';
+import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 
 class AddMenu extends Component {
     state = {
@@ -85,7 +86,11 @@ class AddMenu extends Component {
                         values.imgName = this.state.imgName,
                         axios.post('https://foodninja-4c3c8-default-rtdb.firebaseio.com/dishes.json', values)
                     console.log("axios post", values);
+                    return(
+                        <Redirect to="/addmenu"/>
+                    );
                 }
+                
             }
         >
             {({ values, handleChange, handleSubmit }) => (
@@ -138,6 +143,7 @@ class AddMenu extends Component {
                                 <option value="fastfood">Fast Food</option>
                                 <option value="cookie">Cookie</option>
                                 <option value="cake">Cake</option>
+                                <option value="fruit">Fruit</option>
                                 <option value="dessert">Dessert</option>
                                 <option value="chocolate">Chocolate</option>
                             </select>
