@@ -25,7 +25,6 @@ const INITIAL_STATE = {
     authFailedMsg: null,
     MENU_ITEMS: [],
     dishes: [],
-    userProfile: null,
 }
 
 export const reducer = (state = INITIAL_STATE, action) => {
@@ -93,27 +92,26 @@ export const reducer = (state = INITIAL_STATE, action) => {
 
         //Auth Cases
         case actionTypes.AUTH_SUCCESS:
-            let info = [];
-            axios.get('https://foodninja-4c3c8-default-rtdb.firebaseio.com/user_profile.json')
-            .then(response => {
-            for (let key in response.data) {
-                if (response.data[key].userId == action.payload.userId) {
-                    info.push({
-                        ...response.data[key],
-                        id: key,
-                    })
-                }
 
-            }
-            })
+            axios.get('https://foodninja-4c3c8-default-rtdb.firebaseio.com/user_profile.json')
+                .then(response => {
+                    for (let key in response.data) {
+                        if (response.data[key].userId == action.payload.userId) {
+                            let user = JSON.stringify(response.data[key])
+                            localStorage.setItem("userProfile", user)                           
+                        }
+                    }                    
+                })
+
             return {
                 ...state,
                 token: action.payload.token,
                 userId: action.payload.userId,
                 authFailedMsg: null,
-                userProfile: info,
+
             }
         case actionTypes.AUTH_LOGOUT:
+            //localStorage.removeItem("userProfile")
             return {
                 ...state,
                 token: null,
@@ -133,10 +131,6 @@ export const reducer = (state = INITIAL_STATE, action) => {
                 authFailedMsg: action.payload,
             }
 
-
-
-
-
         case actionTypes.LOAD_DISHES:
 
             let dishes = [];
@@ -153,7 +147,7 @@ export const reducer = (state = INITIAL_STATE, action) => {
 
             }
         default:
-            return state;
+            return state
     }
 
 }

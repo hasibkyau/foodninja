@@ -1,5 +1,5 @@
 import React, { useState, useEffect, Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { Navbar, NavbarBrand, Nav, NavItem, NavbarToggler, Collapse, } from 'reactstrap';
 import LOGO from '../../assets/Logo';
 //useEfect componentDidMount or update er moto kaj kore
@@ -9,13 +9,13 @@ const mapStateToProps = state => {
     return {
         token: state.token,
         userId: state.userId,
-        userProfile: state.userProfile,
     }
 }
 
 class Header extends Component {
     state = {
         NavOpen: false,
+        userProfile: JSON.parse(localStorage.getItem("userProfile")),
     }
 
 
@@ -25,10 +25,14 @@ class Header extends Component {
         })
     }
 
+    componentDidMount(){
+        console.log(this.state.userProfile.fName);
+    }
 
     render(){
 
     let links = null;
+    let dp = null;
     if (this.props.token === null) {
         links = (
             <Nav className='mr-auto' navbar>
@@ -88,6 +92,7 @@ class Header extends Component {
             )
         }
     }
+
     return (
         <div>
             <Navbar light color="light" expand="sm">
@@ -99,8 +104,11 @@ class Header extends Component {
                     <Collapse isOpen={this.state.NavOpen} navbar>
                         {links}
                     </Collapse>
-
                 </div>
+                <NavLink to="/profile">
+                    {this.props.token === null ? null : <p>{this.state.userProfile.fName}</p>}
+                
+                </NavLink>
             </Navbar>
         </div>
     )
