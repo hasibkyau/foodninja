@@ -5,6 +5,7 @@ import { NavLink, Navbar, NavbarBrand, Nav, NavItem, NavbarToggler, Collapse, } 
 import { Link } from "react-router-dom";
 import AddMenu from "../AddMenu/AddMenu";
 import Menu from "../Menu/Menu";
+import MyItems from "./components/MyItems/MyItems";
 class Profile extends Component {
     state = {
         setting: false,
@@ -72,7 +73,7 @@ class Profile extends Component {
         let content = null;
 
         if (this.state.myItems) {
-            content = (<Menu/>);
+            content = (<MyItems/>);
         } else if(this.state.setting){
             //myCart
         } else if(this.state.addItem){
@@ -102,11 +103,11 @@ class Profile extends Component {
 
                     {/* Options */}
                     <div style={{ backgroundColor: "#2D333B"}} className="col-12 col-lg-12 my-2">
-                    <button onClick={this.toggleSetting} class="btn btn-primary mr-2" to="/profile" role="button">Setting</button>  
-                    <button onClick= {this.toggleAddItem} class="btn btn-primary mr-2" to="/addmenu" role="button">Add Item</button>  
-                    <button onClick={this.toggleMyItem} class="btn btn-primary mr-2" to="/profile" role="button">My Items</button>  
-                    <button onclick={this.toggleOrders} class="btn btn-primary mr-2" to="/profile" role="button">Orders</button>  
-                    <button onclick = {this.toggleMyCart} class="btn btn-primary" to="/profile" role="button">MyCart</button>  
+                    <button onClick={this.toggleSetting} className="btn btn-primary mr-2">Setting</button>  
+                    <button onClick= {this.toggleAddItem} className="btn btn-primary mr-2">Add Item</button>  
+                    <button onClick={this.toggleMyItem} className="btn btn-primary mr-2">My Items</button>  
+                    <button onClick={this.toggleOrders} className="btn btn-primary mr-2">Orders</button>  
+                    <button onClick = {this.toggleMyCart} className="btn btn-primary">MyCart</button>  
        
                     </div>
                    </div>
