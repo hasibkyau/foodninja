@@ -25,9 +25,24 @@ export const authFailed = errMsg => {
     }
 }
 
-export const auth = (email, password, mode) => dispatch => {
+const createProfile = (authData, userId, mode) =>{
+    if(mode === "Sign Up"){
+    const userProfile = {
+        fName: authData.fName,
+        lName: authData.lName,
+        email: authData.email,
+        userId: userId,
+    }
+    axios.post('https://foodninja-4c3c8-default-rtdb.firebaseio.com/user_profile.json', userProfile)
+    .then(response => console.log("Acount Created:", response.data.name))
+}
+}
+
+export const auth = (email, password, mode, fName, lName) => dispatch => {
     dispatch(authLoading(true));
     const authData = {
+        fName: fName,
+        lName: lName,
         email: email,
         password: password,
         returnSecureToken: true,
@@ -48,11 +63,13 @@ export const auth = (email, password, mode) => dispatch => {
             const expirationTime = new Date(new Date().getTime() + response.data.expiresIn * 1000);
             localStorage.setItem('expirationTime', expirationTime);
             dispatch(authSuccess(response.data.idToken, response.data.localId));
+            createProfile(authData, response.data.localId, mode);
         })
         .catch(err => {
             dispatch(authLoading(false));
             dispatch(authFailed(err.response.data.error.message))
         })
+    
 }
 
 export const logout = () => {
