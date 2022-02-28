@@ -37,7 +37,7 @@ class Menu extends Component {
         if (confirm('Are you sure you want to save this thing into the database?')) {
             // Save it!
             axios.put("https://foodninja-4c3c8-default-rtdb.firebaseio.com/dishes/" + id + ".json", dish)
-                .then(response => console.log("has approved", response.data,))
+                .then(response => console.log("has approved"))
         } else {
             // Do nothing!
             console.log('Thing was not saved to the database.');

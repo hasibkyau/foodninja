@@ -25,27 +25,52 @@ class Header extends Component {
         })
     }
 
-    componentDidMount(){
+    componentDidMount() {
         console.log(this.state.userProfile.fName);
     }
 
-    render(){
+    render() {
 
-    let links = null;
-    let dp = null;
-    if (this.props.token === null) {
-        links = (
-            <Nav className='mr-auto' navbar>
-                <NavItem>
-                    <Link to="/login" className="nav-link">Login</Link>
-                </NavItem>
-            </Nav>
-        )
-    } else {
-        if (this.props.userId === "YswMnUug7edGO7TlZlJsWpFhKbp2") {
+        let links = null;
+        let profile = JSON.parse(localStorage.getItem("userProfile"));
+        if (this.props.token === null) {
             links = (
                 <Nav className='mr-auto' navbar>
                     <NavItem>
+                        <Link to="/login" className="nav-link">Login</Link>
+                    </NavItem>
+                </Nav>
+            )
+        } else {
+            if (this.props.userId === "YswMnUug7edGO7TlZlJsWpFhKbp2") {
+                links = (
+                    <Nav className='mr-auto' navbar>
+                        <NavItem>
+                            <Link to="/" className="nav-link">Home</Link>
+                        </NavItem>
+                        <NavItem>
+                            <Link to="/menu" className="nav-link">Menu</Link>
+                        </NavItem>
+                        <NavItem>
+                            <Link to="/addmenu" className="nav-link">Add Menu</Link>
+                        </NavItem>
+                        <NavItem>
+                            <Link to="/burgerBuilder" className="nav-link">Burger Builder</Link>
+                        </NavItem>
+                        <NavItem>
+                            <Link to="/orders" className="nav-link">My Orders</Link>
+                        </NavItem>
+                        <NavItem>
+                            <Link to="/dashboard" className="nav-link">DashBoard</Link>
+                        </NavItem>
+                        <NavItem>
+                            <Link to="/logout" className="nav-link">Logout</Link>
+                        </NavItem>
+                    </Nav>
+                )
+            } else {
+                links = (<Nav className='mr-auto' navbar>
+                    <NavItem>
                         <Link to="/" className="nav-link">Home</Link>
                     </NavItem>
                     <NavItem>
@@ -61,58 +86,40 @@ class Header extends Component {
                         <Link to="/orders" className="nav-link">My Orders</Link>
                     </NavItem>
                     <NavItem>
-                        <Link to="/dashboard" className="nav-link">DashBoard</Link>
-                    </NavItem>
-                    <NavItem>
                         <Link to="/logout" className="nav-link">Logout</Link>
                     </NavItem>
                 </Nav>
-            )
-        } else{
-            links = ( <Nav className='mr-auto' navbar>
-                    <NavItem>
-                        <Link to="/" className="nav-link">Home</Link>
-                    </NavItem>
-                    <NavItem>
-                        <Link to="/menu" className="nav-link">Menu</Link>
-                    </NavItem>
-                    <NavItem>
-                        <Link to="/addmenu" className="nav-link">Add Menu</Link>
-                    </NavItem>
-                    <NavItem>
-                        <Link to="/burgerBuilder" className="nav-link">Burger Builder</Link>
-                    </NavItem>
-                    <NavItem>
-                        <Link to="/orders" className="nav-link">My Orders</Link>
-                    </NavItem>
-                    <NavItem>
-                        <Link to="/logout" className="nav-link">Logout</Link>
-                    </NavItem>
-                </Nav>
-            )
+                )
+            }
         }
-    }
 
-    return (
-        <div>
-            <Navbar light color="light" expand="sm">
-                <div className='container'>
-                    <NavbarToggler onClick={this.navToggle} />
-                    <NavbarBrand href="/">
-                        <LOGO />
-                    </NavbarBrand>
-                    <Collapse isOpen={this.state.NavOpen} navbar>
-                        {links}
-                    </Collapse>
-                </div>
-                <NavLink to="/profile">
-                    {this.props.token === null ? null : <p>{this.state.userProfile.fName}</p>}
-                
-                </NavLink>
-            </Navbar>
-        </div>
-    )
-}
+        return (
+            
+            <div>
+                <Navbar light color="light" expand="sm">
+                    <div className='container'>
+                        <NavbarToggler onClick={this.navToggle} />
+                        <NavbarBrand href="/">
+                            <LOGO />
+                        </NavbarBrand>
+                        <Collapse isOpen={this.state.NavOpen} navbar>
+
+                            <form className="form-inline my-2 my-lg-0">
+                                <input className="form-control-sm mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
+                                <button className="btn btn-outline-success btn-sm my-2 my-sm-0" type="submit">Search</button>
+                            </form>
+                            {links}
+                            <NavLink to="/profile">
+                                {this.props.token === null ? null : <p>{profile.fName}</p>}
+                            </NavLink>
+                        </Collapse>
+
+                    </div>
+
+                </Navbar>
+            </div>
+        )
+    }
 }
 
 export default connect(mapStateToProps)(Header);

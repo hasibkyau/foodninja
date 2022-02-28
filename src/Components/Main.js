@@ -16,6 +16,7 @@ import MenuRequest from './MenuRequest/MenuRequest';
 import Menu from './Menu/Menu';
 import MenuApproved from './MenuApproved/MenuApproved';
 import DashBoard from './AdminPanel/Dashboard';
+import Profile from './Profile/Profile';
 
 const mapStateToProps = state => {
     return {
@@ -49,6 +50,7 @@ class Main extends Component {
             if (this.props.userId === "YswMnUug7edGO7TlZlJsWpFhKbp2") {
                 routes = (
                     <Switch>
+                        <Route path="/profile" exact component = {Profile}/>
                         <Route path="/menu" exact component={Menu} />
                         <Route path="/menurequest" exact component={MenuRequest} />
                         <Route path="/addmenu" exact component={AddMenu} />
@@ -67,6 +69,7 @@ class Main extends Component {
             } else {
                 routes = (
                     <Switch>
+                        <Route path="/profile" exact component = {Profile}/>
                         <Route path="/menu" exact component={Menu} />
                         <Route path="/addmenu" exact component={AddMenu} />
                         <Route path="/orders" exact component={Orders} />

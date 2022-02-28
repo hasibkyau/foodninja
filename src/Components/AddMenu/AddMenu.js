@@ -76,7 +76,9 @@ class AddMenu extends Component {
                     pickupPoint: "",
                     url: "",
                     imgName: "",
-                    seller: ""
+                    seller: "",
+                    
+                    
                 }
             }
 
@@ -86,9 +88,6 @@ class AddMenu extends Component {
                         values.imgName = this.state.imgName,
                         axios.post('https://foodninja-4c3c8-default-rtdb.firebaseio.com/dishes.json', values)
                     console.log("axios post", values);
-                    return(
-                        <Redirect to="/addmenu"/>
-                    );
                 }
                 
             }

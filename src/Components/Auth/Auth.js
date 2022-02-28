@@ -101,7 +101,7 @@ class Auth extends Component {
 
                     {this.state.mode === "Sign Up" ? <div>
                             <input
-                                required = "true"
+                                required = {true}
                                 name="fName"
                                 placeholder="First Name"
                                 className="form-control"
@@ -111,7 +111,7 @@ class Auth extends Component {
                              <br />
 
                             <input
-                                required = "true"
+                                required = {true}
                                 name="lName"
                                 placeholder="Last Name"
                                 className="form-control"
@@ -123,7 +123,7 @@ class Auth extends Component {
                         </div> : null}
 
                         <input
-                            required = "true"
+                            required = {true}
                             name="email"
                             placeholder="Enter Your Email"
                             className="form-control"
@@ -132,6 +132,7 @@ class Auth extends Component {
                         />
                          <br />
                         <input
+                            required = {true}
                             type="password"
                             name="password"
                             placeholder="Password"
@@ -146,6 +147,7 @@ class Auth extends Component {
 
                         {this.state.mode === "Sign Up" ? <div>
                             <input
+                                required = {true}
                                 type="password"
                                 name="passwordConfirm"
                                 placeholder="Confirm Password"
