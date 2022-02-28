@@ -99,26 +99,28 @@ class MyItems extends Component {
 
         return (
             <div className="container">
+                <h3 style={{ color: "tomato" }}>Approved Item</h3>
                 <div className="row">
-                    <div className='row justify-content-md-center"'>
-                        <h3 style={{ color: "tomato" }}>Approved Item</h3>
-                        {approvedItem}
-                        <h3 style={{ color: "tomato" }}>Pending Item</h3>
-                        {pendingItem}
-                    </div>
-
-                    <Modal style={{ scrollable: "true" }} isOpen={this.state.modalOpen}>
-                        <ModalBody>
-                            {dishDetail}
-                        </ModalBody>
-                        <ModalFooter>
-                            <Button color="secondary" onClick={this.toggleModal}>
-                                Close
-                            </Button>
-                        </ModalFooter>
-                    </Modal>
-
+                    {approvedItem}
                 </div>
+
+                <h3 style={{ color: "tomato" }}>Pending Item</h3>
+
+                <div className='row justify-content-lg-center"'>
+                    {pendingItem}
+                </div>
+
+                <Modal style={{ scrollable: "true" }} isOpen={this.state.modalOpen}>
+                    <ModalBody>
+                        {dishDetail}
+                    </ModalBody>
+                    <ModalFooter>
+                        <Button color="secondary" onClick={this.toggleModal}>
+                            Close
+                        </Button>
+                    </ModalFooter>
+                </Modal>
+
             </div>
         );
     }
