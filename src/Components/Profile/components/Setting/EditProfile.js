@@ -109,126 +109,154 @@ class EditProfile extends Component {
       }
     >
       {({ values, handleChange, handleSubmit }) => (
-        <div className="d-flex flex-md-row flex-column" style={{ backgroundColor: "#22272E" }}>
+        <div className="row p-2" style={{ backgroundColor: "#22272E", color: "tomato", borderRadius: '10px', }}>
+          <form style={{ width: "100%" }} onSubmit={handleSubmit} >
+            <br />
 
+            <p style={{ fontWeight: "bold", }}>Edit Profile Picture</p>
 
-          <div className="row" style={{ backgroundColor: "#22272E", color: "tomato", margin: "15px", borderRadius: '10px' }}>
-            <form onSubmit={handleSubmit} >
-              <br />
-
-              <p style={{ fontWeight: "bold" }}>Edit Profile Picture</p>
+            <div className="p-3" style={{ backgroundColor: "#2D333B", borderRadius: "10px", color: "white" }}>
               <div className="row">
-              <div className="col-6">
-                  <img className="rounded-circle" width={200} height={200} src={this.state.url == "" ? MyProfile.profilePicture : this.state.url} />
+                <progress className=" mx-3" value={this.state.progress} max="100" style={{ backgroundColor: "#2D333B", border: "0px", marginLeft: "" }} />
+                <img className="m-auto rounded-circle" width={200} height={200} src={this.state.url == "" ? MyProfile.profilePicture : this.state.url} />
+                <input className="form-control mx-3" type="file" onChange={this.handleInputFileChange} style={{ border: "0px", backgroundColor: "#2D333B", color: "white" }} />
+              </div>
+            </div>
+
+            <br />
+            <p style={{ fontWeight: "bold" }}>Edit Personal Information</p>
+
+            <div className="p-3" style={{ backgroundColor: "#2D333B", borderRadius: "10px" }}>
+              
+              
+              <div className="row">
+               
+                <div className="col-12 col-md-6">
+                  <p style={{ fontWeight: "lighter" }}>First Name</p>
+                  <input
+                    name="fName"
+                    placeholder="First Name"
+                    className="form-control"
+                    value={values.fName}
+                    onChange={handleChange}
+                    style={{ backgroundColor: "#2D333B", color: "white" }}
+                  />
+                  <br />
                 </div>
-                <div className="col-6 my-auto"> <input className="form-control" type="file" onChange={this.handleInputFileChange} style={{ backgroundColor: "#2D333B", color: "white" }} />
-                  <progress className="form-control" value={this.state.progress} max="100" style={{ backgroundColor: "#2D333B", color: "white" }} />
+
+                <div className="col-12 col-md-6">
+                  <p style={{ fontWeight: "lighter" }}>Last Name</p>
+                  <input
+                    name="lName"
+                    placeholder="Last Name"
+                    className="form-control"
+                    value={values.lName}
+                    onChange={handleChange}
+                    style={{ backgroundColor: "#2D333B", color: "white" }}
+                  />
                 </div>
-                
               </div>
 
               <br />
-              <p style={{ fontWeight: "bold" }}>Edit Personal Information</p>
 
-              <p style={{ fontWeight: "lighter" }}>Edit Name</p>
-              
+              <div className="row">
+                <div className="col-12 col-md-6">
+                  <p style={{ fontWeight: "lighter" }}>Secondary Email</p>
+                  <input
+                    type="email"
+                    name="secondaryEmail"
+                    placeholder="Secondary Email"
+                    className="form-control"
+                    value={values.secondaryEmail}
+                    onChange={handleChange}
+                    style={{ backgroundColor: "#2D333B", color: "white" }}
+                  />
+                  <br />
+                </div>
 
-              <div className="col-6"></div>
-              <div className="col-6"></div>
-              <input
-                name="fName"
-                placeholder="First Name"
-                className="form-control"
-                value={values.fName}
-                onChange={handleChange}
-                style={{ backgroundColor: "#2D333B", color: "white" }}
-              />
-              <br />
+                <br />
 
-              <input
-                name="lName"
-                placeholder="Last Name"
-                className="form-control"
-                value={values.lName}
-                onChange={handleChange}
-                style={{ backgroundColor: "#2D333B", color: "white" }}
-              />
-              <hr />
-              <p style={{ fontWeight: "lighter" }}>Secondary Email</p>
-              <input
-                type="email"
-                name="secondaryEmail"
-                placeholder="Secondary Email"
-                className="form-control"
-                value={values.secondaryEmail}
-                onChange={handleChange}
-                style={{ backgroundColor: "#2D333B", color: "white" }}
-              />
-              <br />
-              <p style={{ fontWeight: "lighter" }}>Contact Number</p>
-              <input
-                type="number"
-                name="phone"
-                placeholder="Contact number"
-                className="form-control"
-                value={values.phone}
-                onChange={handleChange}
-                style={{ backgroundColor: "#2D333B", color: "white" }}
-              />
-              <br />
-              <p style={{ fontWeight: "lighter" }}>Address</p>
-              <input
-                name="adress"
-                placeholder="Your Adress"
-                className="form-control"
-                value={values.adress}
-                onChange={handleChange}
-                style={{ backgroundColor: "#2D333B", color: "white" }}
-              />
-              <br />
-              <p style={{ fontWeight: "lighter" }}>Bio</p>
-              <textarea
-                name="bio"
-                placeholder="bio"
-                className="form-control"
-                value={values.bio}
-                onChange={handleChange}
-                style={{ backgroundColor: "#2D333B", color: "white" }}
-              />
-              <br />
-              <p style={{ fontWeight: "lighter" }}>Your Pickup Point?</p>
-              <select
-                name="pickupPoint"
-                value={values.pickupPoint}
-                className="form-control"
-                onChange={handleChange}
-                style={{ backgroundColor: "#2D333B", color: "white" }}
-              >
-                <option value={null}>Select where to sell</option>
-                <option value="sirajganj">Sirajganj</option>
-                <option value="bogura">Bogura</option>
-                <option value="mymensing">Mymensing</option>
-              </select>
-              <br />
-              <p style={{ fontWeight: "lighter" }}>Account type</p>
-              <select
-                name="accountType"
-                value={values.accountType}
-                className="form-control"
-                onChange={handleChange}
-                style={{ backgroundColor: "#2D333B", color: "white" }}
-              >
-                <option value={null}>Choose...</option>
-                <option value={false}>ninjaCustomer</option>
-                <option value={true}>ninjaChef</option>
-              </select>
+                <div className="col-12 col-md-6">
+                  <p style={{ fontWeight: "lighter" }}>Contact Number</p>
+                  <input
+                    type="number"
+                    name="phone"
+                    placeholder="Contact number"
+                    className="form-control"
+                    value={values.phone}
+                    onChange={handleChange}
+                    style={{ backgroundColor: "#2D333B", color: "white" }}
+                  />
+                </div>
+              </div>
+
               <br />
 
+              <div className="row">
+                <div className="col-12 col-md-6">
+                  <p style={{ fontWeight: "lighter" }}>Address</p>
+                  <textarea
+                    name="adress"
+                    placeholder="Your Adress"
+                    className="form-control"
+                    value={values.adress}
+                    onChange={handleChange}
+                    style={{ backgroundColor: "#2D333B", color: "white" }}
+                  />
+                </div>
+                <div className="col-12 col-md-6">
+                  <p style={{ fontWeight: "lighter" }}>Bio</p>
+                  <textarea
+                    name="bio"
+                    placeholder="bio"
+                    className="form-control"
+                    value={values.bio}
+                    onChange={handleChange}
+                    style={{ backgroundColor: "#2D333B", color: "white" }}
+                  />
+                </div>
+              </div>
 
-              <hr />
-              <button type="submit" className="btn btn-success">Submit</button>
-            </form>
-          </div>
+              <br />
+
+              <div className="row">
+                <div className="col-12 col-md-6">
+                  <p style={{ fontWeight: "lighter" }}>Your Pickup Point?</p>
+                  <select
+                    name="pickupPoint"
+                    value={values.pickupPoint}
+                    className="form-control"
+                    onChange={handleChange}
+                    style={{ backgroundColor: "#2D333B", color: "white" }}
+                  >
+                    <option value={null}>Select where to sell</option>
+                    <option value="sirajganj">Sirajganj</option>
+                    <option value="bogura">Bogura</option>
+                    <option value="mymensing">Mymensing</option>
+                  </select>
+                </div>
+
+                <div className="col-12 col-md-6">
+                  <p style={{ fontWeight: "lighter" }}>Account type</p>
+                  <select
+                    name="accountType"
+                    value={values.accountType}
+                    className="form-control"
+                    onChange={handleChange}
+                    style={{ backgroundColor: "#2D333B", color: "white" }}
+                  >
+                    <option value={null}>Choose...</option>
+                    <option value={false}>ninjaCustomer</option>
+                    <option value={true}>ninjaChef</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <br />
+            <button style={{ float: "right" }} type="submit" className="btn btn-success">Submit</button>
+         
+          </form>
         </div>
       )}
 
@@ -236,7 +264,7 @@ class EditProfile extends Component {
 
 
     return (
-      <div style={{ backgroundColor: "", color: "tomato" }}>
+      <div className="container" style={{ backgroundColor: "", color: "White" }}>
         {form}
       </div>
     );

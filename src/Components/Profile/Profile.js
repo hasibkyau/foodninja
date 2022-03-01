@@ -95,7 +95,7 @@ class Profile extends Component {
         if (this.state.myItems) {
             content = (<MyItems />);
         } else if (this.state.setting) {
-            //myCart
+            content = (<EditProfile />);
         } else if (this.state.addItem) {
             content = (<AddMenu />)
         } else if (this.state.orders) {
@@ -108,41 +108,39 @@ class Profile extends Component {
         }
 
         return (
-            <div style={{ backgroundColor: "#22272E" }}>
-                <div className="container" style={{ backgroundColor: "#22272E" }}>
+                <div style={{ backgroundColor: "#22272E" }}>
+                    <div className="container" style={{ backgroundColor: "#22272E" }}>
 
-                    <div className="row py-2" >
-                        <div className="col-3 col-lg-2 mt-3">
-                            <CardImg className="rounded-circle" src={profile.profilePicture === "" ? defaultImg : profile.profilePicture} />
-                        </div>
+                        <div className="row py-2" >
+                            <div className="col-3 col-lg-2 mt-3">
+                                <CardImg className="rounded-circle" src={profile.profilePicture === "" ? defaultImg : profile.profilePicture} />
+                            </div>
 
-                        <div className="col-9 col-lg-10 my-auto">
-                            <h1 style={{ color: "tomato" }}>{profile.fName} {profile.lName}</h1>
-                            <h3 style={{ color: "#ADBAC7" }}>Ninja Chef</h3>
-                            <h5 style={{ color: "#ADBAC7" }}>{profile.email}</h5>
-                            <button onClick={this.handleImgSelect} className="btn btn-danger btn-sm">Change Photo</button>
-                            
-                        </div>
+                            <div className="col-9 col-lg-10 my-auto">
+                                <h1 style={{ color: "tomato" }}>{profile.fName} {profile.lName}</h1>
+                                <h3 style={{ color: "#ADBAC7" }}>Ninja Chef</h3>
+                                <h5 style={{ color: "#ADBAC7" }}>{profile.email}</h5>
+                                <button onClick={this.toggleEditProfile} className="btn btn-danger btn-sm">Edit Profile</button>
 
-                        {/* Options */}
-                        <div style={{ backgroundColor: "#2D333B" }} className="col-12 col-lg-12 my-2">
-                            <button onClick={this.toggleEditProfile} className="btn btn-dark mx-2">Edit Profile</button>
+                            </div>
 
-                            <button onClick={this.toggleSetting} className="btn btn-dark mr-2">Setting</button>
-                            <button onClick={this.toggleAddItem} className="btn btn-dark mr-2">Add Item</button>
-                            <button onClick={this.toggleMyItem} className="btn btn-dark mr-2">My Items</button>
-                            <button onClick={this.toggleOrders} className="btn btn-dark mr-2">Orders</button>
-                            <button onClick={this.toggleMyCart} className="btn btn-dark">MyCart</button>
+                            {/* Options */}
+                            <div style={{ backgroundColor: "#2D333B" }} className="col-12 col-lg-12 my-2">
 
+                                <button onClick={this.toggleSetting} className="btn btn-dark mr-2">Settings</button>
+                                <button onClick={this.toggleAddItem} className="btn btn-dark mr-2">Add Item</button>
+                                <button onClick={this.toggleMyItem} className="btn btn-dark mr-2">Gallery</button>
+                                <button onClick={this.toggleOrders} className="btn btn-dark mr-2">Orders</button>
+                                <button onClick={this.toggleMyCart} className="btn btn-dark">MyCart</button>
+
+                            </div>
                         </div>
                     </div>
 
-                    {/* BodY */}
-                    <div>
+                    <div style={{ backgroundColor: "" }}>
                         {content}
                     </div>
                 </div>
-            </div>
 
         );
 
