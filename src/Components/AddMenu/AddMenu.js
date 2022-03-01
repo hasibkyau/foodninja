@@ -57,6 +57,7 @@ class AddMenu extends Component {
 
 
     render() {
+        const userInfo = JSON.parse(localStorage.getItem("MyProfile"));
         let form = null;
         form = <Formik
             initialValues={
@@ -70,14 +71,16 @@ class AddMenu extends Component {
                     price: "",
                     category: "",
                     label: "",
-                    email: "",
-                    phone: "",
-                    address: "",
-                    pickupPoint: "",
+                    
                     url: "",
                     imgName: "",
-                    seller: "",
-                    
+                    sellerfName: userInfo.fName,
+                    sellerlName: userInfo.lName,
+                    sellerId: userInfo.userId,
+                    email: userInfo.email,
+                    phone: "",
+                    SellerAddress: "",
+                    pickupPoint: "",                    
                     
                 }
             }
@@ -160,14 +163,6 @@ class AddMenu extends Component {
                             <hr />
 
                             <p style={{ fontWeight: "bold" }}>Seller Info</p>
-                            <input
-                                name="seller"
-                                placeholder="Enter you Name"
-                                className="form-control"
-                                value={values.seller}
-                                onChange={handleChange}
-                            />
-                            <br />
 
                             <input
                                 type="number"
@@ -180,20 +175,10 @@ class AddMenu extends Component {
                             <br />
 
                             <input
-                                type="email"
-                                name="email"
-                                placeholder="Email"
+                                name="SellerAddress"
+                                placeholder="Your Adress"
                                 className="form-control"
-                                value={values.email}
-                                onChange={handleChange}
-                            />
-                            <br />
-
-                            <input
-                                name="address"
-                                placeholder="Current Adress"
-                                className="form-control"
-                                value={values.address}
+                                value={values.SellerAddress}
                                 onChange={handleChange}
                             />
                             <br />
