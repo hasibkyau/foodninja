@@ -24,6 +24,21 @@ export const authFailed = errMsg => {
         payload: errMsg
     }
 }
+const getProfile = (userId) =>{
+    let profile = [];
+    axios.get("https://foodninja-4c3c8-default-rtdb.firebaseio.com/user_profile.json")
+      .then(response => {
+        for (let key in response.data) {
+          if (response.data[key].userId === userId) {
+            profile.push({
+              ...response.data[key],
+              id: key,
+            })
+          }
+        }
+        localStorage.setItem("MyProfile", JSON.stringify(profile[0]))
+      });
+}
 
 const createProfile = (authData, userId, mode) =>{
     if(mode === "Sign Up"){
@@ -34,7 +49,12 @@ const createProfile = (authData, userId, mode) =>{
         userId: userId,
     }
     axios.post('https://foodninja-4c3c8-default-rtdb.firebaseio.com/user_profile.json', userProfile)
-    .then(response => console.log("Acount Created:", response.data.name))
+    .then(response => {
+        getProfile(userId);
+        window.alert("Account Created");
+    })
+} else {
+    getProfile(userId);
 }
 }
 
@@ -76,6 +96,7 @@ export const logout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('expirationTime');
     localStorage.removeItem('userId');
+    localStorage.removeItem('MyProfile');
     return {
         type: actionTypes.AUTH_LOGOUT,
     }
@@ -97,18 +118,3 @@ export const authCheck = () => dispatch => {
         }
     }
 }
-
-
-// const loadDishes = dishes => ({
-//     type: actionTypes.LOAD_DISHES,
-//     payload: dishes,
-// })
-
-// const fetchDishes = () => dispatch => {
-//     axios.get("https://foodninja-4c3c8-default-rtdb.firebaseio.com/MENU_ITEMS/.json")
-//     //.then(response => dispatch(loadDishes(response.data)))
-//     // .then(dishes => dispatch(loadDishes(dishes)))
-//     // .catch(error => console.log(error))
-//     .then(response => console.log(response.data))
-    
-// }

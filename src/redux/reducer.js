@@ -92,17 +92,6 @@ export const reducer = (state = INITIAL_STATE, action) => {
 
         //Auth Cases
         case actionTypes.AUTH_SUCCESS:
-
-            axios.get('https://foodninja-4c3c8-default-rtdb.firebaseio.com/user_profile.json')
-                .then(response => {
-                    for (let key in response.data) {
-                        if (response.data[key].userId == action.payload.userId) {
-                            let user = JSON.stringify(response.data[key])
-                            localStorage.setItem("userProfile", user)                           
-                        }
-                    }                    
-                })
-
             return {
                 ...state,
                 token: action.payload.token,

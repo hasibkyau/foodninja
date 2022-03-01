@@ -15,7 +15,7 @@ const mapStateToProps = state => {
 class Header extends Component {
     state = {
         NavOpen: false,
-        userProfile: JSON.parse(localStorage.getItem("userProfile")),
+        //userProfile: JSON.parse(localStorage.getItem("userProfile")),
     }
 
 
@@ -26,13 +26,15 @@ class Header extends Component {
     }
 
     componentDidMount() {
-        console.log(this.state.userProfile.fName);
+        //console.log(this.state.userProfile.fName);
     }
 
     render() {
 
         let links = null;
-        let profile = JSON.parse(localStorage.getItem("userProfile"));
+
+        //let profile = JSON.parse(localStorage.getItem("userProfile"));
+        
         if (this.props.token === null) {
             links = (
                 <Nav className='mr-auto' navbar>
@@ -54,12 +56,12 @@ class Header extends Component {
                         <NavItem>
                             <Link to="/addmenu" className="nav-link">Add Menu</Link>
                         </NavItem>
-                        <NavItem>
+                        {/* <NavItem>
                             <Link to="/burgerBuilder" className="nav-link">Burger Builder</Link>
                         </NavItem>
                         <NavItem>
                             <Link to="/orders" className="nav-link">My Orders</Link>
-                        </NavItem>
+                        </NavItem> */}
                         <NavItem>
                             <Link to="/dashboard" className="nav-link">DashBoard</Link>
                         </NavItem>
@@ -79,9 +81,9 @@ class Header extends Component {
                     <NavItem>
                         <Link to="/addmenu" className="nav-link">Add Menu</Link>
                     </NavItem>
-                    <NavItem>
+                    {/* <NavItem>
                         <Link to="/burgerBuilder" className="nav-link">Burger Builder</Link>
-                    </NavItem>
+                    </NavItem> */}
                     <NavItem>
                         <Link to="/orders" className="nav-link">My Orders</Link>
                     </NavItem>
@@ -96,12 +98,14 @@ class Header extends Component {
         return (
             
             <div>
-                <Navbar light color="light" expand="sm">
+                <Navbar light color="light" expand="lg">
                     <div className='container'>
-                        <NavbarToggler onClick={this.navToggle} />
-                        <NavbarBrand href="/">
+                        
+                    <NavbarBrand href="/">
                             <LOGO />
                         </NavbarBrand>
+                        <NavbarToggler onClick={this.navToggle} />
+                        
                         <Collapse isOpen={this.state.NavOpen} navbar>
 
                             <form className="form-inline my-2 my-lg-0">
@@ -110,7 +114,8 @@ class Header extends Component {
                             </form>
                             {links}
                             <NavLink to="/profile">
-                                {this.props.token === null ? null : <p>{profile.fName}</p>}
+                                Profile
+                                {/* {this.props.token === null ? null : <p>{profile.fName}</p>} */}
                             </NavLink>
                         </Collapse>
 
