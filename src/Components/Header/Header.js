@@ -33,7 +33,6 @@ class Header extends Component {
 
         let links = null;
 
-        //let profile = JSON.parse(localStorage.getItem("userProfile"));
         
         if (this.props.token === null) {
             links = (
@@ -52,9 +51,6 @@ class Header extends Component {
                         </NavItem>
                         <NavItem>
                             <Link to="/menu" className="nav-link">Menu</Link>
-                        </NavItem>
-                        <NavItem>
-                            <Link to="/addmenu" className="nav-link">Add Menu</Link>
                         </NavItem>
                         {/* <NavItem>
                             <Link to="/burgerBuilder" className="nav-link">Burger Builder</Link>
@@ -76,11 +72,9 @@ class Header extends Component {
                         <Link to="/" className="nav-link">Home</Link>
                     </NavItem>
                     <NavItem>
-                        <Link to="/menu" className="nav-link">Menu</Link>
+                        <Link to="/menu" className="nav-link">Ninja Food</Link>
                     </NavItem>
-                    <NavItem>
-                        <Link to="/addmenu" className="nav-link">Add Menu</Link>
-                    </NavItem>
+                    
                     {/* <NavItem>
                         <Link to="/burgerBuilder" className="nav-link">Burger Builder</Link>
                     </NavItem> */}
@@ -94,7 +88,8 @@ class Header extends Component {
                 )
             }
         }
-
+        
+        let MyProfile = JSON.parse(localStorage.getItem("MyProfile"));
         return (
             
             <div>
@@ -108,14 +103,17 @@ class Header extends Component {
                         
                         <Collapse isOpen={this.state.NavOpen} navbar>
 
+                            
+                            {links}
+                            <div className='mr-2'>
                             <form className="form-inline my-2 my-lg-0">
                                 <input className="form-control-sm mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
                                 <button className="btn btn-outline-success btn-sm my-2 my-sm-0" type="submit">Search</button>
                             </form>
-                            {links}
+                            </div>
                             <NavLink to="/profile">
-                                Profile
-                                {/* {this.props.token === null ? null : <p>{profile.fName}</p>} */}
+                               {this.props.token == null ? <p>null</p> :  <p>Hello</p>} 
+                               {/* <img src={this.props.token == null ? "" : MyProfile.profilePicture}/>  */}
                             </NavLink>
                         </Collapse>
 

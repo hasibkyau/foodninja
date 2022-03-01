@@ -115,11 +115,12 @@ class EditProfile extends Component {
 
             <p style={{ fontWeight: "bold", }}>Edit Profile Picture</p>
 
-            <div className="p-3" style={{ backgroundColor: "#2D333B", borderRadius: "10px", color: "white" }}>
+            <div className="p-3" style={{ backgroundColor: "#22272E", borderRadius: "10px", color: "white" }}>
               <div className="row">
-                <progress className=" mx-3" value={this.state.progress} max="100" style={{ backgroundColor: "#2D333B", border: "0px", marginLeft: "" }} />
-                <img className="m-auto rounded-circle" width={200} height={200} src={this.state.url == "" ? MyProfile.profilePicture : this.state.url} />
+                <img style={{ border:'2px solid gray'}} className="ml-4 rounded-circle" width={200} height={200} src={this.state.url == "" ? MyProfile.profilePicture : this.state.url} />
                 <input className="form-control mx-3" type="file" onChange={this.handleInputFileChange} style={{ border: "0px", backgroundColor: "#2D333B", color: "white" }} />
+                <progress className="form-control mx-3" value={this.state.progress} max="100" style={{ backgroundColor: "#2D333B", border: "0px", marginLeft: "", display:"block" }} />
+                
               </div>
             </div>
 
