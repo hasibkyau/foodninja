@@ -57,7 +57,7 @@ class AddMenu extends Component {
 
 
     render() {
-        const userInfo = JSON.parse(localStorage.getItem("userProfile"));
+        const userInfo = JSON.parse(localStorage.getItem("MyProfile"));
         let form = null;
         form = <Formik
             initialValues={

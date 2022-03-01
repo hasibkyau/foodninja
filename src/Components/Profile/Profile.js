@@ -1,15 +1,9 @@
 import React, { Component } from "react";
 import { Card, CardBody, CardImg, CardFooter, CardImgOverlay } from "reactstrap";
 import defaultImg from '../../assets/images/profile/unknown.jpg'
-import { NavLink, Navbar, NavbarBrand, Nav, NavItem, NavbarToggler, Collapse, } from 'reactstrap';
-import { Link } from "react-router-dom";
 import AddMenu from "../AddMenu/AddMenu";
-import Menu from "../Menu/Menu";
 import MyItems from "./components/MyItems/MyItems";
-import { faHome } from "@fortawesome/free-solid-svg-icons";
 import EditProfile from "./components/Setting/EditProfile";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Home from "../Home/Home";
 
 
 class Profile extends Component {
@@ -94,8 +88,7 @@ class Profile extends Component {
 
     render() {
 
-        const profile = JSON.parse(localStorage.getItem("userProfile"));
-        console.log("User:", profile);
+        const profile = JSON.parse(localStorage.getItem("MyProfile"));
 
         let content = null;
 
@@ -121,7 +114,7 @@ class Profile extends Component {
 
                     <div className="row py-2" >
                         <div className="col-3 col-lg-2 mt-3">
-                            <CardImg className="rounded-circle" src={defaultImg} />
+                            <CardImg className="rounded-circle" src={profile.profilePicture === "" ? defaultImg : profile.profilePicture} />
                             <CardImgOverlay>
                             </CardImgOverlay>
                         </div>

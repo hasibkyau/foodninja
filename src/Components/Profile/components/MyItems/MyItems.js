@@ -50,7 +50,7 @@ class MyItems extends Component {
 
     render() {
         document.title = "foodninja";
-        let userInfo = JSON.parse(localStorage.getItem("userProfile"));
+        let userInfo = JSON.parse(localStorage.getItem("MyProfile"));
         let dishes = this.props.dishes;
 
         let approvedItem = null;
