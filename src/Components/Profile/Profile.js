@@ -14,8 +14,8 @@ class Profile extends Component {
 
         editProfile: false,
         setting: false,
-        addItem: false,
-        myItems: true,
+        addItem: true,
+        myItems: false,
         orders: false,
         myCart: false,
     }
@@ -109,21 +109,17 @@ class Profile extends Component {
 
         return (
             <div style={{ backgroundColor: "#22272E" }}>
-
                 <div className="container" style={{ backgroundColor: "#22272E" }}>
 
                     <div className="row py-2" >
                         <div className="col-3 col-lg-2 mt-3">
                             <CardImg className="rounded-circle" src={profile.profilePicture === "" ? defaultImg : profile.profilePicture} />
-                            <CardImgOverlay>
-                            </CardImgOverlay>
                         </div>
 
                         <div className="col-9 col-lg-10 my-auto">
                             <h1 style={{ color: "tomato" }}>{profile.fName} {profile.lName}</h1>
                             <h3 style={{ color: "#ADBAC7" }}>Ninja Chef</h3>
                             <h5 style={{ color: "#ADBAC7" }}>{profile.email}</h5>
-
                             <button onClick={this.handleImgSelect} className="btn btn-danger btn-sm">Change Photo</button>
                             
                         </div>

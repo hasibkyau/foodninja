@@ -73,7 +73,7 @@ class EditProfile extends Component {
   render() {
     const MyProfile = JSON.parse(localStorage.getItem("MyProfile"));
     const profileUpdateUrl = "https://foodninja-4c3c8-default-rtdb.firebaseio.com/user_profile/" + (MyProfile.id) + ".json";
-    
+
 
     let form = null;
     form = <Formik
@@ -86,8 +86,8 @@ class EditProfile extends Component {
           email: MyProfile.email,
 
 
-          secondaryEmail: MyProfile.secondaryEmail == undefined ? undefined : MyProfile.secondaryEmail ,
-          phone: MyProfile.phone == undefined ? undefined : MyProfile.phone ,
+          secondaryEmail: MyProfile.secondaryEmail == undefined ? undefined : MyProfile.secondaryEmail,
+          phone: MyProfile.phone == undefined ? undefined : MyProfile.phone,
           adress: MyProfile.adress == undefined ? undefined : MyProfile.adress,
           pickupPoint: MyProfile.pickupPoint == undefined ? undefined : MyProfile.pickupPoint,
           bio: MyProfile.bio == undefined ? undefined : MyProfile.bio,
@@ -98,45 +98,50 @@ class EditProfile extends Component {
 
       onSubmit={
         (values) => {
-            values.profilePicture = this.state.url == "" ? MyProfile.profilePicture : this.state.url,
+          values.profilePicture = this.state.url == "" ? MyProfile.profilePicture : this.state.url,
             axios.put(profileUpdateUrl, values)
-            .then(response => {
-              window.alert("Profile Updated");
-              localStorage.setItem("MyProfile", JSON.stringify(values));
-            })
+              .then(response => {
+                window.alert("Profile Updated");
+                localStorage.setItem("MyProfile", JSON.stringify(values));
+              })
         }
 
       }
     >
       {({ values, handleChange, handleSubmit }) => (
-        <div className="d-flex flex-md-row flex-column">
+        <div className="d-flex flex-md-row flex-column" style={{ backgroundColor: "#22272E" }}>
 
 
-          <div className="m-2" >
-            <p style={{ fontWeight: "bold" }}>Profile Picture</p>
-            <input className="form-control" type="file" onChange={this.handleInputFileChange} />
-            <progress className="form-control" value={this.state.progress} max="100" />
-            <br />
-            <Card>
-              <CardBody>
-                <img className="rounded-circle" width={200} height={200} src={this.state.url == "" ? MyProfile.profilePicture : this.state.url} />
-              </CardBody>
-            </Card>
-          </div>
+          <div className="row" style={{ backgroundColor: "#22272E", color: "tomato", margin: "15px", borderRadius: '10px' }}>
+            <form onSubmit={handleSubmit} >
+              <br />
 
+              <p style={{ fontWeight: "bold" }}>Edit Profile Picture</p>
+              <div className="row">
+              <div className="col-6">
+                  <img className="rounded-circle" width={200} height={200} src={this.state.url == "" ? MyProfile.profilePicture : this.state.url} />
+                </div>
+                <div className="col-6 my-auto"> <input className="form-control" type="file" onChange={this.handleInputFileChange} style={{ backgroundColor: "#2D333B", color: "white" }} />
+                  <progress className="form-control" value={this.state.progress} max="100" style={{ backgroundColor: "#2D333B", color: "white" }} />
+                </div>
+                
+              </div>
 
-          <div className="col-8" style={{ backgroundColor: "white", margin: "15px", borderRadius: '10px' }}>
-            <form onSubmit={handleSubmit}>
-              <p style={{ fontWeight: "bold" }}>Edit Profile</p>
-              <br/>
+              <br />
+              <p style={{ fontWeight: "bold" }}>Edit Personal Information</p>
 
               <p style={{ fontWeight: "lighter" }}>Edit Name</p>
+              
+
+              <div className="col-6"></div>
+              <div className="col-6"></div>
               <input
                 name="fName"
                 placeholder="First Name"
                 className="form-control"
                 value={values.fName}
                 onChange={handleChange}
+                style={{ backgroundColor: "#2D333B", color: "white" }}
               />
               <br />
 
@@ -146,8 +151,9 @@ class EditProfile extends Component {
                 className="form-control"
                 value={values.lName}
                 onChange={handleChange}
+                style={{ backgroundColor: "#2D333B", color: "white" }}
               />
-              <hr/>
+              <hr />
               <p style={{ fontWeight: "lighter" }}>Secondary Email</p>
               <input
                 type="email"
@@ -156,6 +162,7 @@ class EditProfile extends Component {
                 className="form-control"
                 value={values.secondaryEmail}
                 onChange={handleChange}
+                style={{ backgroundColor: "#2D333B", color: "white" }}
               />
               <br />
               <p style={{ fontWeight: "lighter" }}>Contact Number</p>
@@ -166,6 +173,7 @@ class EditProfile extends Component {
                 className="form-control"
                 value={values.phone}
                 onChange={handleChange}
+                style={{ backgroundColor: "#2D333B", color: "white" }}
               />
               <br />
               <p style={{ fontWeight: "lighter" }}>Address</p>
@@ -175,6 +183,7 @@ class EditProfile extends Component {
                 className="form-control"
                 value={values.adress}
                 onChange={handleChange}
+                style={{ backgroundColor: "#2D333B", color: "white" }}
               />
               <br />
               <p style={{ fontWeight: "lighter" }}>Bio</p>
@@ -184,6 +193,7 @@ class EditProfile extends Component {
                 className="form-control"
                 value={values.bio}
                 onChange={handleChange}
+                style={{ backgroundColor: "#2D333B", color: "white" }}
               />
               <br />
               <p style={{ fontWeight: "lighter" }}>Your Pickup Point?</p>
@@ -192,6 +202,7 @@ class EditProfile extends Component {
                 value={values.pickupPoint}
                 className="form-control"
                 onChange={handleChange}
+                style={{ backgroundColor: "#2D333B", color: "white" }}
               >
                 <option value={null}>Select where to sell</option>
                 <option value="sirajganj">Sirajganj</option>
@@ -205,10 +216,11 @@ class EditProfile extends Component {
                 value={values.accountType}
                 className="form-control"
                 onChange={handleChange}
+                style={{ backgroundColor: "#2D333B", color: "white" }}
               >
-                <option value= {null}>Choose...</option>
-                <option value= {false}>ninjaCustomer</option>
-                <option value= {true}>ninjaChef</option>
+                <option value={null}>Choose...</option>
+                <option value={false}>ninjaCustomer</option>
+                <option value={true}>ninjaChef</option>
               </select>
               <br />
 
@@ -224,7 +236,7 @@ class EditProfile extends Component {
 
 
     return (
-      <div style={{ backgroundColor: "white" }}>
+      <div style={{ backgroundColor: "", color: "tomato" }}>
         {form}
       </div>
     );
