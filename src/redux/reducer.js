@@ -19,8 +19,10 @@ const INITIAL_STATE = {
     orderErr: false,
     totalPrice: 80,
     purchasable: false,
+    
     token: null,
     userId: null,
+
     authLoading: false,
     authFailedMsg: null,
     MENU_ITEMS: [],

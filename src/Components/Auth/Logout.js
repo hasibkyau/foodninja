@@ -13,9 +13,11 @@ const mapDispatchToProps = dispatch => {
 class Logout extends Component {
     componentDidMount() {
         this.props.logout();
+        location.reload();
     }
     render() {
-        return (<Redirect to="/" />)
+        // return (<Redirect to="/" />)
+        return (<a href='/' />)
     }
 }
 

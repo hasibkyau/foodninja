@@ -71,7 +71,7 @@ class AddMenu extends Component {
                     price: "",
                     category: "",
                     label: "",
-                    
+
                     url: "",
                     imgName: "",
                     sellerfName: userInfo.fName,
@@ -80,8 +80,8 @@ class AddMenu extends Component {
                     email: userInfo.email,
                     phone: "",
                     SellerAddress: "",
-                    pickupPoint: "",                    
-                    
+                    pickupPoint: "",
+
                 }
             }
 
@@ -92,108 +92,167 @@ class AddMenu extends Component {
                         axios.post('https://foodninja-4c3c8-default-rtdb.firebaseio.com/dishes.json', values)
                     console.log("axios post", values);
                 }
-                
+
             }
         >
             {({ values, handleChange, handleSubmit }) => (
-                <div className="d-flex flex-md-row flex-column">
+                <div className="">
 
 
-                    <div className="m-2" >
-                    <p style={{ fontWeight: "bold" }}>Dish image</p>
-                            
-                        <input className="form-control" type="file" onChange={this.handleInputFileChange} />
-                        <progress className="form-control" value={this.state.progress} max="100" />
-                        <br />
-                        <Card>
-                            <CardBody>
-                                <img width={200} height={200} src={this.state.url} />
-                            </CardBody>
-                        </Card>
+                    <div className="m-2 " >
+
+
+
                     </div>
 
 
-                    <div className="col-8" style={{backgroundColor:"white", margin:"15px", borderRadius:'10px'}}>
+                    <div className="p-3" style={{ backgroundColor: "#2D333B", margin: "15px", border: "", borderRadius: '10px' }}>
                         <form onSubmit={handleSubmit}>
                             <p style={{ fontWeight: "bold" }}>Dish info</p>
-                            <input
-                                name="name"
-                                placeholder="Enter Menu Name"
-                                className="form-control"
-                                value={values.name}
-                                onChange={handleChange}
-                            />
-                            <br />
 
-                            <input
-                                name="price"
-                                placeholder="Enter Menu Price"
-                                className="form-control"
-                                value={values.price}
-                                onChange={handleChange}
-                            />
-                            <br />
+                            <div className="row">
+                                <div className="col-12 col-md-6">
+                                   
+                                    <img style={{ border: "1px solid black" }} className="m-auto" width={150} height={150} src={this.state.url} />
 
-                            <select
-                                name="category"
-                                value={values.pickupPoint}
-                                className="form-control"
-                                onChange={handleChange}
-                            >
-                                <option value={null}>Select category</option>
-                                <option value="meal">Meal</option>
-                                <option value="fastfood">Fast Food</option>
-                                <option value="cookie">Cookie</option>
-                                <option value="cake">Cake</option>
-                                <option value="fruit">Fruit</option>
-                                <option value="dessert">Dessert</option>
-                                <option value="chocolate">Chocolate</option>
-                            </select>
-                            <br />
+                                    <input style={{ backgroundColor: "#2D333B", width: "150px" }} className="form-control" type="file" onChange={this.handleInputFileChange} />
+                                    <progress style={{ backgroundColor: "#2D333B", width: "150px" }} className="form-control" value={this.state.progress} max="100" />
+                                    <br />
+                                </div>
+
+                                <div className="col-12 col-md-6">
+                                    <p style={{ fontWeight: "lighter" }}>Food Name</p>
+                                    <input
+                                        name="name"
+                                        placeholder="Enter Menu Name"
+                                        className="form-control"
+                                        value={values.name}
+                                        onChange={handleChange}
+                                        style={{ backgroundColor: "#22272E", color: "white", border: "1px solid black" }}
+                                    />
+                                    <br />
+                                    <p style={{ fontWeight: "lighter" }}>Food Price</p>
+                                    <input
+                                        name="price"
+                                        placeholder="Enter Menu Price"
+                                        className="form-control"
+                                        value={values.price}
+                                        onChange={handleChange}
+                                        style={{ backgroundColor: "#22272E", color: "white", border: "1px solid black" }}
+                                    />
+                                    <br />
+                                </div>
+                            </div>
 
 
-                            <textarea
-                                name="description"
-                                placeholder="Enter Menu Description"
-                                className="form-control"
-                                value={values.description}
-                                onChange={handleChange}
-                            />
-                            <br />
-                            <hr />
+                            {/* <div className="row">
+                                <div className="col-12 col-md-6"></div>
+                                <div className="col-12 col-md-6"></div>
+                            </div> */}
+
+
+                            <div className="row">
+                                <div className="col-12 col-md-6">
+                                    <p style={{ fontWeight: "lighter" }}>Food Category</p>
+                                    <select
+                                        name="category"
+                                        value={values.pickupPoint}
+                                        className="form-control"
+                                        onChange={handleChange}
+                                        style={{ backgroundColor: "#22272E", color: "white", border: "1px solid black" }}
+                                    >
+                                        <option value={null}>choose...</option>
+                                        <option value="meal">Meal</option>
+                                        <option value="fastfood">Fast Food</option>
+                                        <option value="cookie">Cookie</option>
+                                        <option value="cake">Cake</option>
+                                        <option value="fruit">Fruit</option>
+                                        <option value="dessert">Dessert</option>
+                                        <option value="chocolate">Chocolate</option>
+                                    </select>
+                                    <br />
+                                </div>
+                                <div className="col-12 col-md-6">
+                                    <p style={{ fontWeight: "lighter" }}>Description</p>
+                                    <textarea
+                                        name="description"
+                                        placeholder="Enter Menu Description"
+                                        className="form-control"
+                                        value={values.description}
+                                        onChange={handleChange}
+                                        style={{ backgroundColor: "#22272E", color: "white", border: "1px solid black" }}
+                                    />
+                                    <br />
+                                </div>
+                            </div>
 
                             <p style={{ fontWeight: "bold" }}>Seller Info</p>
 
-                            <input
-                                type="number"
-                                name="phone"
-                                placeholder="Contact number"
-                                className="form-control"
-                                value={values.phone}
-                                onChange={handleChange}
-                            />
-                            <br />
 
-                            <input
-                                name="SellerAddress"
-                                placeholder="Your Adress"
-                                className="form-control"
-                                value={values.SellerAddress}
-                                onChange={handleChange}
-                            />
-                            <br />
+                            <div className="row">
+                                <div className="col-12 col-md-6">
+                                    <p style={{ fontWeight: "lighter" }}>Contact Number</p>
+                                    <input
+                                        type="number"
+                                        name="phone"
+                                        placeholder="Contact number"
+                                        className="form-control"
+                                        value={values.phone}
+                                        onChange={handleChange}
+                                        style={{ backgroundColor: "#22272E", color: "white", border: "1px solid black" }}
+                                    />
+                                    <br />
+                                </div>
+                                <div className="col-12 col-md-6">
+                                    <p style={{ fontWeight: "lighter" }}>Current Address</p>
+                                    <input
+                                        name="SellerAddress"
+                                        placeholder="Your Adress"
+                                        className="form-control"
+                                        value={values.SellerAddress}
+                                        onChange={handleChange}
+                                        style={{ backgroundColor: "#22272E", color: "white", border: "1px solid black" }}
+                                    />
+                                    <br />
+                                </div>
+                            </div>
 
-                            <select
-                                name="pickupPoint"
-                                value={values.pickupPoint}
-                                className="form-control"
-                                onChange={handleChange}
-                            >
-                                <option value={null}>Select where to sell</option>
-                                <option value="sirajganj">Sirajganj</option>
-                                <option value="bogura">Bogura</option>
-                                <option value="mymensing">Mymensing</option>
-                            </select>
+                            <div className="row">
+                                <div className="col-12 col-md-6">
+                                    <p style={{ fontWeight: "lighter" }}>Sell Zone</p>
+                                    <select
+                                        name="pickupPoint"
+                                        value={values.pickupPoint}
+                                        className="form-control"
+                                        onChange={handleChange}
+                                        style={{ backgroundColor: "#22272E", color: "white", border: "1px solid black" }}
+                                    >
+                                        <option value={null}>choose...</option>
+                                        <option value="sirajganj">Sirajganj</option>
+                                        <option value="bogura">Bogura</option>
+                                        <option value="mymensing">Mymensing</option>
+                                    </select>
+                                    <br />
+
+                                </div>
+                                <div className="col-12 col-md-6">
+                                    <p style={{ fontWeight: "lighter" }}>Payment Method</p>
+                                    <select
+                                        name="pickupPoint"
+                                        value={values.pickupPoint}
+                                        className="form-control"
+                                        onChange={handleChange}
+                                        style={{ backgroundColor: "#22272E", color: "white", border: "1px solid black" }}
+                                    >
+                                        <option value={null}>choose...</option>
+                                        <option value="sirajganj">CashOn Delivery</option>
+                                        <option value="bogura">bKash</option>
+                                        <option value="mymensing">Both</option>
+                                    </select>
+                                </div>
+                            </div>
+
+
 
                             <br />
                             <hr />
@@ -202,20 +261,7 @@ class AddMenu extends Component {
                     </div>
 
 
-                    {/* <div className="col-4">
-                        <input className="form-control" type="file" onChange={this.handleInputFileChange} />
-                        <progress className="form-control" value={this.state.progress} max="100" />
-                        <br />
-                        <Card>
-                            <CardBody>
-                                <img width={200} height={200} src={this.state.url} />
-                            </CardBody>
-                        </Card>
-                    </div> */}
 
-                    {/* </div>
-
-                    </div> */}
 
                 </div>
             )}
@@ -223,15 +269,10 @@ class AddMenu extends Component {
         </Formik>
 
         return (
-            <div style={{backgroundColor:'tomato'}}>
+            <div style={{ backgroundColor: '#22272E', color: "white" }}>
                 <div className="container">
-                <AdvertiseSection
-                    AdvertiseTitle='List your restaurant or foods on foodninja'
-                    AdvertiseDetails="Would you like millions of new customers to enjoy your amazing food and groceries? So would we! It's simple: we list your menu and product lists online, help you process orders, pick them up, and deliver them to hungry ninjas – in a heartbeat! Interested? Let's start our partnership today!"
-                    button={{ text: "Get Started" }}
-                     bgImg= {AdvertiseImg}
-                />
-                {form}
+
+                    {form}
                 </div>
             </div>
         );

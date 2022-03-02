@@ -1,6 +1,25 @@
 import axios from 'axios';
 import React, { Component } from 'react';
 import { Form, Button, Input } from 'reactstrap';
+import dateFormat from 'dateformat';
+import { connect } from 'react-redux';
+import { fetchDishes } from '../../../redux/actionCreators';
+
+const mapStateToProps = state => {
+    return {
+        dishes: state.dishes,
+        // comments: state.comments,
+
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        fetchDishes: () => dispatch(fetchDishes()),
+        // fetchComments: () => dispatch(fetchComments())
+    }
+}
+
 
 class CommentForm extends Component {
     constructor(props) {
@@ -16,36 +35,47 @@ class CommentForm extends Component {
 
     handleInputChange = event => {
         this.setState({
-            [event.target.name]: event.target.value
+            [event.target.name]: event.target.value,
         })
     }
 
     handleSubmit = event => {
-        //console.log("submit", this.props);
-        this.props.addComment(this.props.dishId, this.state.rating, this.state.author, this.state.comment);
-        
-        this.setState({
-            author: '',
-            rating: '',
-            comment: ''
-        });
+        let MyProfile = JSON.parse(localStorage.getItem("MyProfile"));
+
+        const comment = {
+            author: MyProfile.fName + " " + MyProfile.lName,
+            authorId: MyProfile.userId,
+            comment: this.state.comment,
+            rating: this.state.rating,
+            dishId: this.props.dishId,
+            authorImg: MyProfile.profilePicture,
+            date: new Date(),
+        }
+        console.log("submit", comment);
+        axios.post("https://foodninja-4c3c8-default-rtdb.firebaseio.com/dishes/" + this.props.dishId + "/comments/.json", comment)
+            .then(response => {
+                console.log("success:", response)
+                this.props.fetchDishes();
+            })
+        //this.props.addComment(this.props.dishId, this.state.rating, this.state.author, this.state.comment);
+
+        // this.setState({
+        //     author: '',
+        //     rating: '',
+        //     comment: ''
+        // });
 
         event.preventDefault();
     }
 
     render() {
         //console.log(this.props);
+        let MyProfile = JSON.parse(localStorage.getItem("MyProfile"));
+
         return (
             <div>
                 <Form onSubmit={this.handleSubmit}>
-                    <Input
-                        type="text"
-                        name="author"
-                        value={this.state.author}
-                        placeholder="Your Name"
-                        onChange={this.handleInputChange}
-                        required />
-                    <br />
+
                     <Input
                         type="select"
                         name="rating"
@@ -58,20 +88,24 @@ class CommentForm extends Component {
                         <option>5</option>
                     </Input>
                     <br />
-                    <Input
-                        type="textarea"
-                        name="comment"
-                        value={this.state.comment}
-                        placeholder="Your Comment"
-                        onChange={this.handleInputChange}
-                        required>
-                    </Input>
+                    <div className='row p-2'>
+                        <img src={MyProfile.profilePicture} height={50} width={50} style={{ border: "2px solid black" }} className="mr-2 rounded-circle" />
+                        <input
+                            style={{ borderRadius: "30px", width: "80%", paddingLeft: "15px" }}
+                            type="text"
+                            name="comment"
+                            value={this.state.comment}
+                            placeholder="Your Comment"
+                            onChange={this.handleInputChange}
+                            required>
+                        </input>
+                    </div>
                     <br />
-                    <Button type="submit">Submit Comment</Button>
+                    <Button className='btn btn-success btn-sm' type="submit">Comment</Button>
                 </Form>
             </div>
         );
     }
 }
 
-export default CommentForm;
+export default connect(mapStateToProps, mapDispatchToProps)(CommentForm);

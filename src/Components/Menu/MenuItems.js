@@ -20,7 +20,7 @@ const MenuItem = props => {
                     <span>
                         {props.dish.name}
                     </span>
-                    <CardText>
+                    <CardText style={{color:'tomato'}}>
                         Price: {props.dish.price}/-
                     </CardText>
                     </CardBody>

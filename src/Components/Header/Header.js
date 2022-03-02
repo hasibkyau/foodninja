@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Component } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import { Navbar, NavbarBrand, Nav, NavItem, NavbarToggler, Collapse, } from 'reactstrap';
+import { Navbar, NavbarBrand, Nav, NavItem, NavbarToggler, Collapse, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import LOGO from '../../assets/Logo';
 //useEfect componentDidMount or update er moto kaj kore
 import { connect } from 'react-redux';
@@ -16,6 +16,7 @@ class Header extends Component {
     state = {
         NavOpen: false,
         //userProfile: JSON.parse(localStorage.getItem("userProfile")),
+        dropdownOpen: false
     }
 
 
@@ -25,17 +26,19 @@ class Header extends Component {
         })
     }
 
-    componentDidMount() {
-        //console.log(this.state.userProfile.fName);
+    toggle() {
+        this.setState({
+            dropdownOpen: !this.state.dropdownOpen,
+        })
     }
 
     render() {
 
         let links = null;
+        let MyProfile = null;
 
-        //let profile = JSON.parse(localStorage.getItem("userProfile"));
-        
         if (this.props.token === null) {
+
             links = (
                 <Nav className='mr-auto' navbar>
                     <NavItem>
@@ -44,84 +47,68 @@ class Header extends Component {
                 </Nav>
             )
         } else {
-            if (this.props.userId === "YswMnUug7edGO7TlZlJsWpFhKbp2") {
-                links = (
-                    <Nav className='mr-auto' navbar>
-                        <NavItem>
-                            <Link to="/" className="nav-link">Home</Link>
-                        </NavItem>
-                        <NavItem>
-                            <Link to="/menu" className="nav-link">Menu</Link>
-                        </NavItem>
-                        <NavItem>
-                            <Link to="/addmenu" className="nav-link">Add Menu</Link>
-                        </NavItem>
-                        {/* <NavItem>
-                            <Link to="/burgerBuilder" className="nav-link">Burger Builder</Link>
-                        </NavItem>
-                        <NavItem>
-                            <Link to="/orders" className="nav-link">My Orders</Link>
-                        </NavItem> */}
-                        <NavItem>
-                            <Link to="/dashboard" className="nav-link">DashBoard</Link>
-                        </NavItem>
-                        <NavItem>
-                            <Link to="/logout" className="nav-link">Logout</Link>
-                        </NavItem>
-                    </Nav>
-                )
-            } else {
-                links = (<Nav className='mr-auto' navbar>
+            MyProfile = JSON.parse(localStorage.getItem("MyProfile"));
+            links = (
+                <Nav className='mr-auto' navbar>
+
                     <NavItem>
                         <Link to="/" className="nav-link">Home</Link>
                     </NavItem>
                     <NavItem>
                         <Link to="/menu" className="nav-link">Menu</Link>
                     </NavItem>
-                    <NavItem>
-                        <Link to="/addmenu" className="nav-link">Add Menu</Link>
-                    </NavItem>
                     {/* <NavItem>
-                        <Link to="/burgerBuilder" className="nav-link">Burger Builder</Link>
-                    </NavItem> */}
+                            <Link to="/burgerBuilder" className="nav-link">Burger Builder</Link>
+                        </NavItem>
+                        <NavItem>
+                            <Link to="/orders" className="nav-link">My Orders</Link>
+                        </NavItem> */}
+                    {this.props.userId === "YswMnUug7edGO7TlZlJsWpFhKbp2" ? <NavItem>
+                        <Link to="/dashboard" className="nav-link">DashBoard</Link>
+                    </NavItem> : null}
+
                     <NavItem>
-                        <Link to="/orders" className="nav-link">My Orders</Link>
+                        <Link to="/" className="nav-link">About</Link>
+                    </NavItem>
+                    <NavItem>
+                        <Link to="/" className="nav-link">Contact</Link>
                     </NavItem>
                     <NavItem>
                         <Link to="/logout" className="nav-link">Logout</Link>
                     </NavItem>
                 </Nav>
-                )
-            }
+            )
+
+            var link = null;
+
+
         }
 
         return (
-            
+
             <div>
+
                 <Navbar light color="light" expand="lg">
                     <div className='container'>
-                        
-                    <NavbarBrand href="/">
+
+                        <NavbarBrand href="/">
                             <LOGO />
                         </NavbarBrand>
                         <NavbarToggler onClick={this.navToggle} />
-                        
-                        <Collapse isOpen={this.state.NavOpen} navbar>
 
-                            <form className="form-inline my-2 my-lg-0">
-                                <input className="form-control-sm mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
-                                <button className="btn btn-outline-success btn-sm my-2 my-sm-0" type="submit">Search</button>
-                            </form>
+                        <Collapse isOpen={this.state.NavOpen} navbar>
                             {links}
-                            <NavLink to="/profile">
-                                Profile
-                                {/* {this.props.token === null ? null : <p>{profile.fName}</p>} */}
-                            </NavLink>
+                            <Link style={{ margin: "0px", padding: "0px    " }} to="/profile" className="nav-link">
+                                {this.props.token == null ? null : <span style={{ color: "black", fontStyle: "italic" }}>{MyProfile.fName} </span>}
+                                {this.props.token == null ? null : <img style={{ border: "1px solid gray", backgroundColor: "" }} className="rounded-circle" src={MyProfile.profilePicture} height={30} width={30} />}
+                            </Link>
                         </Collapse>
 
                     </div>
 
                 </Navbar>
+
+
             </div>
         )
     }
