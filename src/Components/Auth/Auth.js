@@ -87,7 +87,7 @@ class Auth extends Component {
                     
                     <div className='col m-2'>
                         <h1><span style={{color:"tomato"}}>food</span><span>ninja</span></h1>
-                        <h2>foodninja helps you sell and buy your favourie food.</h2>
+                        <h2>foodninja helps you sell and buy your favourite food.</h2>
                     </div>
 
                 <div className='col-md-6' style={{

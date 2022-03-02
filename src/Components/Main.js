@@ -57,10 +57,14 @@ class Main extends Component {
                         <Route path="/orders" exact component={Orders} />
                         <Route path="/checkout" exact component={Checkout} />
                         <Route path="/logout" exact component={Logout} />
-                        <Route path="/burgerBuilder" exact component={BurgerBuilder} />
+{/* 
+                        <Route path="/burgerBuilder" exact component={BurgerBuilder} /> */}
+
                         <Route path="/" exact component={Home} />
-                        <Route path="/approvedmenu" exact component={MenuApproved} />
-                        <Route path="/upload" exact component={ReactFirebaseFileUpload} />
+
+                        {/* <Route path="/approvedmenu" exact component={MenuApproved} />
+                        <Route path="/upload" exact component={ReactFirebaseFileUpload} /> */}
+
                         <Route path="/dashboard" exact component = {DashBoard}/>
                         <Redirect to="/" />
                     </Switch>

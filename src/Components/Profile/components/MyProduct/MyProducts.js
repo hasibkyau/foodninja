@@ -24,7 +24,7 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-class MyItems extends Component {
+class MyProducts extends Component {
     state = {
         selectedDish: null,
         modalOpen: false,
@@ -128,4 +128,4 @@ class MyItems extends Component {
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(MyItems);
+export default connect(mapStateToProps, mapDispatchToProps)(MyProducts);
