@@ -4,7 +4,8 @@ import defaultImg from '../../assets/images/profile/unknown.jpg'
 import AddMenu from "../AddMenu/AddMenu";
 import MyItems from "./components/MyItems/MyItems";
 import EditProfile from "./components/Setting/EditProfile";
-
+import { Route, Switch, Redirect } from "react-router-dom/cjs/react-router-dom.min";
+import { Link } from "react-router-dom";
 
 class Profile extends Component {
     state = {

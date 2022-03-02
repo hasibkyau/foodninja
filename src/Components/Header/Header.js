@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Component } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import { Navbar, NavbarBrand, Nav, NavItem, NavbarToggler, Collapse, } from 'reactstrap';
+import { Navbar, NavbarBrand, Nav, NavItem, NavbarToggler, Collapse, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import LOGO from '../../assets/Logo';
 //useEfect componentDidMount or update er moto kaj kore
 import { connect } from 'react-redux';
@@ -16,6 +16,7 @@ class Header extends Component {
     state = {
         NavOpen: false,
         //userProfile: JSON.parse(localStorage.getItem("userProfile")),
+        dropdownOpen: false
     }
 
 
@@ -25,6 +26,11 @@ class Header extends Component {
         })
     }
 
+    toggle() {
+        this.setState({
+            dropdownOpen: !this.state.dropdownOpen,
+        })
+    }
 
     render() {
 
@@ -45,10 +51,7 @@ class Header extends Component {
             MyProfile = JSON.parse(localStorage.getItem("MyProfile"));
             links = (
                 <Nav className='mr-auto' navbar>
-                    <form className="form-inline my-2 my-lg-0">
-                        <input className="form-control-sm mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
-                        <button className="btn btn-outline-success btn-sm my-2 my-sm-0" type="submit">Search</button>
-                    </form>
+
                     <NavItem>
                         <Link to="/" className="nav-link">Home</Link>
                     </NavItem>
@@ -74,7 +77,6 @@ class Header extends Component {
                     <NavItem>
                         <Link to="/logout" className="nav-link">Logout</Link>
                     </NavItem>
-
                 </Nav>
             )
 
@@ -86,6 +88,7 @@ class Header extends Component {
         return (
 
             <div>
+
                 <Navbar light color="light" expand="lg">
                     <div className='container'>
 
@@ -96,12 +99,17 @@ class Header extends Component {
 
                         <Collapse isOpen={this.state.NavOpen} navbar>
                             {links}
-                            <Link to="/profile" className="nav-link">{this.props.token == null ? null : MyProfile.fName}</Link>
+                            <Link style={{ margin: "0px", padding: "0px    " }} to="/profile" className="nav-link">
+                                {this.props.token == null ? null : <span style={{ color: "black", fontStyle: "italic" }}>{MyProfile.fName} </span>}
+                                {this.props.token == null ? null : <img style={{ border: "1px solid gray", backgroundColor: "" }} className="rounded-circle" src={MyProfile.profilePicture} height={30} width={30} />}
+                            </Link>
                         </Collapse>
 
                     </div>
 
                 </Navbar>
+
+
             </div>
         )
     }

@@ -24,13 +24,16 @@ class EditProfile extends Component {
     MyUrl: null,
   }
 
-  handleInputFileChange = e => {
-    if (e.target.files[0]) {
-      this.setState({
-        image: e.target.files[0]
-      })
-    }
-    this.handleUpload(e.target.files[0]);
+
+
+
+  handleInputFileChange = e => {    
+      if (e.target.files[0]) {
+        this.setState({
+          image: e.target.files[0]
+        })
+      }
+      this.handleUpload(e.target.files[0]);    
   };
 
   handleUpload = (image) => {
@@ -60,17 +63,19 @@ class EditProfile extends Component {
           });
       }
     );
+
   }
 
-  handleImgSave = () => {
-    let userInfo = JSON.parse(localStorage.getItem("userProfile"));
-    userInfo.dpUrl = this.state.url;
-    let updatedInfo = JSON.stringify(userInfo)
-    localStorage.setItem("newProfile", updatedInfo);
-    console.log(userInfo.Id);
-  }
+  // handleImgSave = () => {
+  //   let userInfo = JSON.parse(localStorage.getItem("userProfile"));
+  //   userInfo.dpUrl = this.state.url;
+  //   let updatedInfo = JSON.stringify(userInfo)
+  //   localStorage.setItem("newProfile", updatedInfo);
+  //   console.log(userInfo.Id);
+  // }
 
   render() {
+   
     const MyProfile = JSON.parse(localStorage.getItem("MyProfile"));
     const profileUpdateUrl = "https://foodninja-4c3c8-default-rtdb.firebaseio.com/user_profile/" + (MyProfile.id) + ".json";
 
@@ -99,13 +104,15 @@ class EditProfile extends Component {
       onSubmit={
         (values) => {
           values.profilePicture = this.state.url == "" ? MyProfile.profilePicture : this.state.url,
+          values.profileImageName = this.state.url == "" ? null : this.state.image.name,
             axios.put(profileUpdateUrl, values)
               .then(response => {
                 window.alert("Profile Updated");
                 localStorage.setItem("MyProfile", JSON.stringify(values));
+                
               })
         }
-
+        
       }
     >
       {({ values, handleChange, handleSubmit }) => (
@@ -117,10 +124,11 @@ class EditProfile extends Component {
 
             <div className="p-3" style={{ backgroundColor: "#22272E", borderRadius: "10px", color: "white" }}>
               <div className="row">
-                <img style={{ border:'2px solid gray'}} className="ml-4 rounded-circle" width={200} height={200} src={this.state.url == "" ? MyProfile.profilePicture : this.state.url} />
+                <img style={{ border: '2px solid gray' }} className="ml-4 rounded-circle" width={200} height={200} src={this.state.url == "" ? MyProfile.profilePicture : this.state.url} />
                 <input className="form-control mx-3" type="file" onChange={this.handleInputFileChange} style={{ border: "0px", backgroundColor: "#2D333B", color: "white" }} />
-                <progress className="form-control mx-3" value={this.state.progress} max="100" style={{ backgroundColor: "#2D333B", border: "0px", marginLeft: "", display:"block" }} />
-                
+                <progress className="form-control mx-3" value={this.state.progress} max="100" style={{ backgroundColor: "#2D333B", border: "0px", marginLeft: "", display: "block" }} />
+                <button type="submit" className="btn btn-success ml-4">Save</button>
+
               </div>
             </div>
 
@@ -128,10 +136,10 @@ class EditProfile extends Component {
             <p style={{ fontWeight: "bold" }}>Edit Personal Information</p>
 
             <div className="p-3" style={{ backgroundColor: "#2D333B", borderRadius: "10px" }}>
-              
-              
+
+
               <div className="row">
-               
+
                 <div className="col-12 col-md-6">
                   <p style={{ fontWeight: "lighter" }}>First Name</p>
                   <input
@@ -256,7 +264,7 @@ class EditProfile extends Component {
 
             <br />
             <button style={{ float: "right" }} type="submit" className="btn btn-success">Submit</button>
-         
+
           </form>
         </div>
       )}

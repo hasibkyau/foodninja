@@ -18,6 +18,7 @@ class Home extends Component {
         document.title = "Home";
         return (
             <div>
+                
                 <BannerSection
                     companyName={{ fname: "food", lname: "ninja" }}
                     title="It's the food and groceries you love, delivered."
