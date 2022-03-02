@@ -103,7 +103,6 @@ class AddMenu extends Component {
 
 
 
-
                     </div>
 
 
@@ -120,6 +119,7 @@ class AddMenu extends Component {
                                     <progress style={{ backgroundColor: "#2D333B", width: "150px" }} className="form-control" value={this.state.progress} max="100" />
                                     <br />
                                 </div>
+
                                 <div className="col-12 col-md-6">
                                     <p style={{ fontWeight: "lighter" }}>Food Name</p>
                                     <input
