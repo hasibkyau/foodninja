@@ -15,18 +15,25 @@ const mapStateToProps = state => {
 
 const DishDetail = props => {
    function handleCart(){
-        //console.log(props);
+        console.log(props.dish);
         let MyProfile = JSON.parse(localStorage.getItem("MyProfile"));
         
         let order = {
             confirmed : false,
-            orderTime: new Date(),
-            userId: MyProfile.userId, 
+
+            customerId: MyProfile.userId,
+            customerName: MyProfile.fName + " " + MyProfile.lName,
+            customerEmail: MyProfile.email,
+            
+            sellerId: props.dish.sellerId,
+            sellerName: props.dish.sellerfName + " " + props.dish.sellerlName,
+            sellerEmail: props.dish.email,
+
             dish: props.dish,
-            customer : MyProfile,
+            orderTime: new Date(),
         }
 
-        axios.post("https://foodninja-4c3c8-default-rtdb.firebaseio.com/customer_orders/"+ order.userId +".json?", order)
+        axios.post("https://foodninja-4c3c8-default-rtdb.firebaseio.com/customer_orders/.json?", order)
             .then(response => window.alert("added to cart!"))
            
     }

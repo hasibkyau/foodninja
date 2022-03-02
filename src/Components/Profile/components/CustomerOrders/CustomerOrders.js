@@ -22,7 +22,7 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-class Orders extends Component {
+class CustomerOrders extends Component {
 
 
 
@@ -45,7 +45,7 @@ class Orders extends Component {
             }}>You have no Orders!</p>
         } else {
             orders = this.props.orders.map(order => {
-                if (order.customerId == this.props.userId) {
+                if (order.sellerId == this.props.userId) {
                     return <Order order={order} key={order.id} />
                 }
             })
@@ -61,4 +61,4 @@ class Orders extends Component {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Orders);
+export default connect(mapStateToProps, mapDispatchToProps)(CustomerOrders);

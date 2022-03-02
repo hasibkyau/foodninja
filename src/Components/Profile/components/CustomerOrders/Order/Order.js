@@ -32,12 +32,15 @@ const Order = props => {
             <div className='row'>
                 <div className='col-2'>
                     <CardImg src={props.order.dish.url} />
-                    <button onClick={handleRemove} style={{width:"100%"}} className='btn btn-danger'>Cancel</button>
+                
                 </div>
 
                 <div className='col-6'>
                     <p style={{fontWeight:"bold"}}>Order Name: {props.order.dish.name}<span style={{color:"tomato"}}>{props.order.dish.confirmed ? " (Packaging)": " (pending)"}</span></p>
                     <p>Description: {props.order.dish.description} BDT</p>
+                    
+                    <button onClick={handleRemove} style={{}} className='btn mr-2 btn-danger'>Cancel</button>
+                    <button onClick={handleRemove} style={{}} className='btn btn-success'>Confirm</button>
                 </div>
 
                 <div className='col-2'>

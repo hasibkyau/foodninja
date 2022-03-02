@@ -41,7 +41,7 @@ class Home extends Component {
 
                 <FooterBanner
                     title="Thank you for visiting our site"
-                    subtitle="This project has deploped by Md Hasibur Rahman"
+                    subtitle="Deploped by Md Hasibur Rahman"
                     copyRightText="2022 Ninja IT Corporation, Inc"
                     bgImg={Img}
                 />

@@ -44,7 +44,7 @@ export const orderLoadFailed = () => {
 export const fetchOrders = (token, userId) => dispatch => {
     const queryParams = '&orderBy="userId"&equalTo="'+ userId + '"';
     // axios.get('https://foodninja-4c3c8-default-rtdb.firebaseio.com/orders.json?auth=' + token + queryParams)
-    axios.get('https://foodninja-4c3c8-default-rtdb.firebaseio.com/customer_orders/'+ userId +'.json?')
+    axios.get('https://foodninja-4c3c8-default-rtdb.firebaseio.com/customer_orders/.json?')
         .then(response => {
             dispatch(loadOrders(response.data));
         })
