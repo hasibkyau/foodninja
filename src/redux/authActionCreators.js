@@ -52,8 +52,9 @@ const createProfile = (authData, userId, mode) => {
         }
         axios.post('https://foodninja-4c3c8-default-rtdb.firebaseio.com/user_profile.json', userProfile)
             .then(response => {
+                
                 getProfile(userId);
-                window.alert("Account Created");
+                
             })
     } else {
         getProfile(userId);
@@ -70,10 +71,12 @@ export const auth = (email, password, mode, fName, lName) => dispatch => {
         password: password,
         returnSecureToken: true,
     }
+    
 
     let authUrl = null;
 
     if (mode === "Sign Up") {
+        localStorage.setItem("MyProfile", JSON.stringify(authData));
         authUrl = "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=";
     } else {
         authUrl = "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=";
@@ -88,13 +91,14 @@ export const auth = (email, password, mode, fName, lName) => dispatch => {
             localStorage.setItem('expirationTime', expirationTime);
             createProfile(authData, response.data.localId, mode);
 
-            setTimeout(()=>{
-            dispatch(authLoading(false));    
-            dispatch(authSuccess(response.data.idToken, response.data.localId));
-            },1000)
+            setTimeout(() => {
+                dispatch(authLoading(false));
+                dispatch(authSuccess(response.data.idToken, response.data.localId));
+                // location.reload();
+            }, 1000)
         })
-        .then(data =>{
-            
+        .then(data => {
+
         })
         .catch(err => {
             dispatch(authLoading(false));

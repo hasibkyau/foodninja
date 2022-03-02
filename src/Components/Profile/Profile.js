@@ -6,6 +6,7 @@ import MyItems from "./components/MyItems/MyItems";
 import EditProfile from "./components/Setting/EditProfile";
 import { Route, Switch, Redirect } from "react-router-dom/cjs/react-router-dom.min";
 import { Link } from "react-router-dom";
+import Orders from "./components/Orders/Orders";
 
 class Profile extends Component {
     state = {
@@ -70,9 +71,9 @@ class Profile extends Component {
             editProfile: false,
             setting: false,
             addItem: false,
-            myItems: true,
+            myItems: false,
             orders: false,
-            myCart: false
+            myCart: true
         })
     }
 
@@ -103,6 +104,7 @@ class Profile extends Component {
             //myItems
         } else if (this.state.myCart) {
             //myCart
+            content = (<Orders/>)
         } else if (this.state.editProfile) {
             //Edit profile
             content = (<EditProfile />);

@@ -34,7 +34,6 @@ class Header extends Component {
 
     render() {
 
-        console.log("render");
         let links = null;
         let MyProfile = null;
 
