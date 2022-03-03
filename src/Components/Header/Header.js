@@ -32,6 +32,9 @@ class Header extends Component {
         })
     }
 
+    componentDidMount(){
+    }
+
     render() {
 
         let links = null;
@@ -99,8 +102,8 @@ class Header extends Component {
                         <Collapse isOpen={this.state.NavOpen} navbar>
                             {links}
                             <Link style={{ margin: "0px", padding: "0px    " }} to="/profile" className="nav-link">
-                                {this.props.token == null ? null : <span style={{ color: "black", fontStyle: "italic" }}>{MyProfile.fName} </span>}
-                                {this.props.token == null ? null : <img style={{ border: "1px solid gray", backgroundColor: "" }} className="rounded-circle" src={MyProfile.profilePicture} height={30} width={30} />}
+                                {this.props.token == null ? null : <span style={{ color: "black", fontStyle: "italic" }}>{MyProfile == null ? "profile " : MyProfile.fName } </span>}
+                                {this.props.token == null ? null : <img style={{ border: "1px solid gray", backgroundColor: "" }} className="rounded-circle" src={MyProfile == null ? "" : MyProfile.profilePicture} height={30} width={30} />}
                             </Link>
                         </Collapse>
 
